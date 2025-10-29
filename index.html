@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Clenzzo</title>
+    
+    <!-- 1. Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Google Font: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. Custom Styling & Tailwind Configuration -->
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Added smooth scroll behavior for better navigation on review */
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Styles for Form Elements in Dark Mode */
+        .form-input, .form-select, .form-textarea {
+            @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-200;
+        }
+        
+        /* This .btn style will now apply to <a> tags as well */
+        .btn {
+            @apply inline-block w-full font-bold py-3 px-5 rounded-lg transition duration-200 ease-in-out text-center;
+        }
+        
+        .btn-primary {
+            @apply bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-75;
+        }
+        
+        .btn-secondary {
+            @apply bg-slate-600 text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-75;
+        }
+        
+        .btn-disabled {
+            @apply bg-slate-700 text-slate-400 cursor-not-allowed;
+        }
+
+        /* Hide scrollbar for disclaimer text, but allow scrolling */
+        .disclaimer-box::-webkit-scrollbar {
+            display: none;
+        }
+        .disclaimer-box {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Application Container -->
+    <div id="app-container" class="w-full max-w-lg mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+
+        <!-- ===== PAGE 1: WELCOME ===== -->
+        <div id="page-welcome" class="p-6 md:p-8">
+            <!-- Company Logo Placeholder -->
+            <div class="text-center mb-6">
+                <span class="text-4xl font-bold text-teal-400">CLENZZO</span>
+                <p class="text-sm text-slate-400">Premium Waterless Car Care</p>
+            </div>
+            
+            <h1 class="text-2xl font-bold text-white mb-4 text-center">Join the Clenzzo Revolution</h1>
+            <p class="text-slate-300 mb-6">
+                Clenzzo is aspiring to become India’s #1 cleaning partner, driven by technology, quality, and a passion for excellence. We look for partners, not just employees.
+            </p>
+            
+            <h2 class="text-xl font-bold text-white mb-3">What We Offer</h2>
+            <ul class="list-disc list-inside space-y-2 text-slate-300 mb-8">
+                <li>Employee Development Programs</li>
+                <li>Quarterly Promotions & Appraisals</li>
+                <li>Competitive Salary & Incentives</li>
+                <li>A Supportive & Driven Team</li>
+                <li>Residential Support (if required)</li>
+            </ul>
+            
+            <button id="start-btn" class="btn btn-primary">Start Application</button>
+        </div>
+
+        <!-- ===== PAGE 2: DISCLAIMER ===== -->
+        <div id="page-disclaimer" class="p-6 md:p-8 hidden">
+            <h1 class="text-3xl font-bold text-white mb-4">Terms of Engagement</h1>
+            <p class="text-slate-400 mb-4">Please read and agree to the following terms before proceeding.</p>
+            
+            <!-- Scrollable Disclaimer Box -->
+            <div class="disclaimer-box h-64 overflow-y-auto bg-slate-900 p-4 rounded-lg border border-slate-700 space-y-4 text-slate-300">
+                <h3 class="font-bold text-white">1. Probation Period</h3>
+                <p>All positions are subject to a mandatory 3-month (90-day) probation period. During this time, the salary will be 60% of the committed CTC.</p>
+                
+                <h3 class="font-bold text-white">2. Minimum Commitment</h3>
+                <p>You agree to a minimum employment commitment of one (1) year with Clenzzo Cleaning Services Private Limited.</p>
+                
+                <h3 class="font-bold text-white">3. Working Hours</h3>
+                <p>You agree to adhere to the designated working hours for your role:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Supervisors & Detailers:</strong> 5:00 AM to 6:00 PM (with designated breaks)</li>
+                    <li><strong>Admin & Management:</strong> 9:00 AM to 6:00 PM</li>
+                </ul>
+                <p class="mt-2">Flexibility is required based on business needs.</p>
+
+                <h3 class="font-bold text-white">4. Data Privacy</h3>
+                <p>You consent to Clenzzo collecting and processing the personal data provided in this application for recruitment purposes.</p>
+            </div>
+            
+            <!-- Agreement Checkbox -->
+            <div class="mt-6 flex items-center">
+                <input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-teal-500 focus:ring-teal-500 rounded">
+                <label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to the terms.</label>
+            </div>
+            
+            <button id="disclaimer-continue-btn" class="btn btn-disabled mt-6" disabled>I Agree & Continue</button>
+        </div>
+
+        <!-- ===== PAGE 3: MULTI-STEP FORM ===== -->
+        <div id="page-form" class="p-6 md:p-8 hidden">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-700 rounded-full h-2.5 mb-6">
+                <div id="progress-bar" class="bg-teal-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
+            </div>
+
+            <form id="application-form">
+                <!-- Step 1: Full Name -->
+                <div class="question-step" data-step="1">
+                    <label for="fullName" class="block text-xl font-bold mb-3">What is your full name?</label>
+                    <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g., Ramesh Kumar" required>
+                </div>
+
+                <!-- Step 2: Contact -->
+                <div class="question-step hidden" data-step="2">
+                    <label for="email" class="block text-xl font-bold mb-3">What is your contact information?</label>
+                    <input type="email" id="email" name="email" class="form-input mb-3" placeholder="Email Address" required>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="Phone Number" required>
+                </div>
+
+                <!-- Step 3: Position -->
+                <div class="question-step hidden" data-step="3">
+                    <label for="position" class="block text-xl font-bold mb-3">Which position are you applying for?</label>
+                    <select id="position" name="position" class="form-select" required>
+                        <option value="" disabled selected>Select a position...</option>
+                        <option value="Supervising Officer">Supervising Officer</option>
+                        <option value="Detailer">Detailer</option>
+                        <option value="Admin Executive">Admin Executive</option>
+                        <option value="Sales Manager">Sales Manager</option>
+                    </select>
+                    <!-- Dynamic details box for qualifications -->
+                    <div id="position-details" class="mt-3 p-3 bg-slate-900 rounded-lg text-slate-300 border border-slate-700 text-sm hidden">
+                        Please select a position to see qualifications.
+                    </div>
+                </div>
+
+                <!-- Step 4: Personal Details -->
+                <div class="question-step hidden" data-step="4">
+                    <label class="block text-xl font-bold mb-3">Tell us about yourself.</label>
+                    <select id="maritalStatus" name="maritalStatus" class="form-select mb-3" required>
+                        <option value="" disabled selected>Marital Status...</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                    </select>
+                    <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-input mb-3" placeholder="Place of Birth" required>
+                    <textarea id="currentAddress" name="currentAddress" class="form-textarea" rows="3" placeholder="Current Address" required></textarea>
+                </div>
+
+                <!-- Step 5: Education -->
+                <div class="question-step hidden" data-step="5">
+                    <label class="block text-xl font-bold mb-3">What is your highest qualification?</label>
+                    <input type="text" id="qualification" name="qualification" class="form-input mb-3" placeholder="Qualification (e.g., B.Com, 12th Std)" required>
+                    <input type="text" id="discipline" name="discipline" class="form-input mb-3" placeholder="Discipline (e.g., Commerce, Science) (Optional)">
+                    <input type="text" id="educationPlace" name="educationPlace" class="form-input" placeholder="Place of Education (School/College)" required>
+                </div>
+
+                <!-- Step 6: Skills -->
+                <div class="question-step hidden" data-step="6">
+                    <label class="block text-xl font-bold mb-3">What are your driving/riding skills?</label>
+                    <select id="skillMotorcycle" name="skillMotorcycle" class="form-select mb-3" required>
+                        <option value="" disabled selected>Know how to ride a motorcycle?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <select id="skillCar" name="skillCar" class="form-select mb-3" required>
+                        <option value="" disabled selected>Know how to drive a car?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <select id="skillLicense" name="skillLicense" class="form-select" required>
+                        <option value="" disabled selected>Have a valid license?</option>
+                        <option value="Yes - 2 Wheeler">Yes - 2 Wheeler</option>
+                        <option value="Yes - 4 Wheeler">Yes - 4 Wheeler</option>
+                        <option value="Yes - Both">Yes - Both</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <!-- Step 7: Languages -->
+                <div class="question-step hidden" data-step="7">
+                    <label class="block text-xl font-bold mb-3">Which languages do you know?</label>
+                    <!-- Container for dynamically added language fields -->
+                    <div id="language-list" class="space-y-3">
+                        <!-- Language items will be added here -->
+                    </div>
+                    <button type="button" id="add-language-btn" class="btn btn-secondary mt-3 text-sm py-2">Add Language</button>
+                </div>
+
+                <!-- Step 8: Declarations -->
+                <div class="question-step hidden" data-step="8">
+                    <label class="block text-xl font-bold mb-3">Declarations</label>
+                    <select id="criminalCase" name="criminalCase" class="form-select mb-3" required>
+                        <option value="" disabled selected>Any criminal cases?</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                    <select id="residentialSupport" name="residentialSupport" class="form-select" required>
+                        <option value="" disabled selected>Need residential support?</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <!-- Step 9: Reference -->
+                <div class="question-step hidden" data-step="9">
+                    <label for="referenceName" class="block text-xl font-bold mb-3">Please provide one reference.</label>
+                    <input type="text" id="referenceName" name="referenceName" class="form-input mb-3" placeholder="Reference Person's Name" required>
+                    <input type="tel" id="referenceContact" name="referenceContact" class="form-input" placeholder="Reference Person's Contact Number" required>
+                </div>
+
+                <!-- Step 10: Anything Else -->
+                <div class="question-step hidden" data-step="10">
+                    <label for="anythingElse" class="block text-xl font-bold mb-3">Anything else to add?</label>
+                    <textarea id="anythingElse" name="anythingElse" class="form-textarea" rows="4" placeholder="Optional: Tell us more..."></textarea>
+                </div>
+            </form>
+
+            <!-- Navigation Buttons -->
+            <div class="mt-8 flex gap-4">
+                <button id="prev-btn" class="btn btn-secondary w-1/2">Previous</button>
+                <button id="next-btn" class="btn btn-primary w-1/2">Next</button>
+            </div>
+        </div>
+        
+        <!-- ===== PAGE 4: REVIEW ===== -->
+        <div id="page-review" class="p-6 md:p-8 hidden">
+            <h1 class="text-3xl font-bold text-white mb-6">Review Your Application</h1>
+            
+            <!-- Container for review data -->
+            <div id="review-content" class="space-y-6 text-slate-300">
+                <!-- Review data will be injected here by JS -->
+            </div>
+            
+            <div class="mt-8 flex gap-4">
+                <button id="edit-btn" class="btn btn-secondary w-1/2">Edit</button>
+                
+                <!-- *** MODIFIED ***
+                     Changed <button> to <a> tag. It is styled as 'btn' and 'btn-primary'.
+                     The href is set to '#' as a placeholder. JS will update it.
+                -->
+                <a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Submit Application</a>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 5: SUCCESS ===== -->
+        <div id="page-success" class="p-6 md:p-8 hidden">
+            <div class="text-center">
+                <!-- Success Icon -->
+                <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                
+                <h1 class="text-3xl font-bold text-white mb-3">Almost There!</h1>
+                <p class="text-slate-300 mb-6 text-lg">
+                    Your email client should be open.
+                </p>
+                <!-- Highlighted instruction box -->
+                <p class="text-teal-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-teal-800">
+                    Please review the information in the email and click 'Send' to finalize your application.
+                </p>
+                <p class="text-slate-400 mt-6">
+                    If your email client did not open, click the button below.
+                </p>
+                
+                <!-- *** MODIFIED ***
+                     Changed <button> to <a> tag.
+                -->
+                <a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- STATE & ELEMENTS ---
+            let currentStep = 0;
+            // A map of all pages for easy navigation
+            const pages = {
+                welcome: document.getElementById('page-welcome'),
+                disclaimer: document.getElementById('page-disclaimer'),
+                form: document.getElementById('page-form'),
+                review: document.getElementById('page-review'),
+                success: document.getElementById('page-success')
+            };
+            
+            const formSteps = document.querySelectorAll('.question-step');
+            const totalSteps = formSteps.length;
+            const formData = {}; // Will hold all data for review and submission
+            
+            const progressBar = document.getElementById('progress-bar');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            
+            const positionSelect = document.getElementById('position');
+            const positionDetails = document.getElementById('position-details');
+            
+            // Qualifications map
+            const positionQualifications = {
+                "Supervising Officer": "Requires 2+ years of team lead experience and a valid 2/4-wheeler license.",
+                "Detailer": "Requires physical fitness, attention to detail, and a 2-wheeler license.",
+                "Admin Executive": "Requires good communication skills, Tally/Excel knowledge, and 1+ year experience.",
+                "Sales Manager": "Requires 3+ years in B2B/B2C sales, strong communication, and a target-driven mindset."
+            };
+
+            // --- NAVIGATION ---
+            function navigateTo(pageKey) {
+                // Hide all pages
+                Object.values(pages).forEach(page => page.classList.add('hidden'));
+                // Show the target page
+                if (pages[pageKey]) {
+                    pages[pageKey].classList.remove('hidden');
+                }
+                // Scroll to top of container on page change
+                document.getElementById('app-container').scrollIntoView();
+            }
+
+            // --- FORM LOGIC ---
+            function showStep(stepIndex) {
+                formSteps.forEach((step, index) => {
+                    step.classList.toggle('hidden', index !== stepIndex);
+                });
+                
+                // Update Progress Bar
+                progressBar.style.width = `${((stepIndex + 1) / totalSteps) * 100}%`;
+                
+                // Update Buttons
+                prevBtn.classList.toggle('hidden', stepIndex === 0);
+                prevBtn.classList.toggle('opacity-50', stepIndex === 0);
+
+                if (stepIndex === totalSteps - 1) {
+                    nextBtn.textContent = 'Review Application';
+                } else {
+                    nextBtn.textContent = 'Next';
+                }
+            }
+
+            function validateCurrentStep() {
+                const currentStepElement = formSteps[currentStep];
+                // Get all required inputs within the current step
+                const inputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    // Check if input is visible and empty
+                    if (input.offsetWidth > 0 && !input.value.trim()) {
+                        input.classList.add('border-red-500', 'focus:ring-red-500');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('border-red-500', 'focus:ring-red-500');
+                    }
+                });
+
+                // Special check for languages step
+                if (currentStepElement.dataset.step === "7") {
+                    const langList = document.getElementById('language-list');
+                    const addLangBtn = document.getElementById('add-language-btn');
+                    
+                    if (langList.children.length === 0) {
+                        // If no languages added, mark button as invalid
+                        addLangBtn.classList.add('ring-2', 'ring-red-500');
+                        isValid = false;
+                    } else {
+                        // If languages exist, check if the name is filled
+                        const langInputs = langList.querySelectorAll('input[required]');
+                        langInputs.forEach(langInput => {
+                            if (!langInput.value.trim()) {
+                                langInput.classList.add('border-red-500', 'focus:ring-red-500');
+                                isValid = false;
+                            } else {
+                                langInput.classList.remove('border-red-500', 'focus:ring-red-500');
+                            }
+                        });
+                        addLangBtn.classList.remove('ring-2', 'ring-red-500');
+                    }
+                }
+                
+                return isValid;
+            }
+
+            function addLanguageField() {
+                const list = document.getElementById('language-list');
+                const langIndex = list.children.length;
+                
+                // Template for a new language entry
+                const langFieldHTML = `
+                    <div class="language-item bg-slate-900 p-3 rounded-lg border border-slate-700">
+                        <input type="text" class="form-input mb-2" placeholder="Language (e.g., Tamil)" data-lang-name="${langIndex}" required>
+                        <div class="flex flex-wrap gap-4 text-sm">
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded" data-lang-read="${langIndex}"> <span class="ml-2">Read</span></label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded" data-lang-write="${langIndex}"> <span class="ml-2">Write</span></label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded" data-lang-speak="${langIndex}"> <span class="ml-2">Speak</span></label>
+                        </div>
+                    </div>
+                `;
+                list.insertAdjacentHTML('beforeend', langFieldHTML);
+                
+                // New language field is added, remove error ring from button if present
+                document.getElementById('add-language-btn').classList.remove('ring-2', 'ring-red-500');
+            }
+
+            // --- DATA GATHERING & REVIEW ---
+            function gatherFormData() {
+                // Helper to get value
+                const getValue = (id) => document.getElementById(id).value.trim();
+
+                formData.fullName = getValue('fullName');
+                formData.email = getValue('email');
+                formData.phone = getValue('phone');
+                formData.position = getValue('position');
+                formData.maritalStatus = getValue('maritalStatus');
+                formData.placeOfBirth = getValue('placeOfBirth');
+                formData.currentAddress = getValue('currentAddress');
+                formData.qualification = getValue('qualification');
+                formData.discipline = getValue('discipline');
+                formData.educationPlace = getValue('educationPlace');
+                formData.skillMotorcycle = getValue('skillMotorcycle');
+                formData.skillCar = getValue('skillCar');
+                formData.skillLicense = getValue('skillLicense');
+                formData.criminalCase = getValue('criminalCase');
+                formData.residentialSupport = getValue('residentialSupport');
+                formData.referenceName = getValue('referenceName');
+                formData.referenceContact = getValue('referenceContact');
+                formData.anythingElse = getValue('anythingElse');
+                
+                // Gather Languages
+                formData.languages = [];
+                const langItems = document.querySelectorAll('.language-item');
+                langItems.forEach((item, index) => {
+                    const name = item.querySelector(`[data-lang-name="${index}"]`).value.trim();
+                    if (name) { // Only add if name is not empty
+                        formData.languages.push({
+                            name: name,
+                            read: item.querySelector(`[data-lang-read="${index}"]`).checked,
+                            write: item.querySelector(`[data-lang-write="${index}"]`).checked,
+                            speak: item.querySelector(`[data-lang-speak="${index}"]`).checked,
+                        });
+                    }
+                });
+            }
+            
+            function buildReviewPage() {
+                gatherFormData(); // Ensure data is fresh
+                const reviewContent = document.getElementById('review-content');
+                
+                // Helper function to format language skills
+                const formatLangSkills = (lang) => {
+                    const skills = [];
+                    if (lang.read) skills.push('Read');
+                    if (lang.write) skills.push('Write');
+                    if (lang.speak) skills.push('Speak');
+                    return skills.length ? skills.join(', ') : 'N/A';
+                };
+
+                const langHtml = formData.languages.map(lang => `
+                    <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>
+                `).join('');
+                
+                // Helper for optional fields
+                const optional = (val) => val || '<span class="text-slate-500">N/A</span>';
+
+                // Inject HTML into review content
+                reviewContent.innerHTML = `
+                    <div class="review-section">
+                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Personal Details</h3>
+                        <p><strong>Name:</strong> ${formData.fullName}</p>
+                        <p><strong>Email:</strong> ${formData.email}</p>
+                        <p><strong>Phone:</strong> ${formData.phone}</p>
+                        <p><strong>Marital Status:</strong> ${formData.maritalStatus}</p>
+                        <p><strong>Place of Birth:</strong> ${formData.placeOfBirth}</p>
+                        <p><strong>Address:</strong><br><span class="pl-2">${formData.currentAddress.replace(/\n/g, '<br>')}</span></p>
+                    </div>
+
+                    <div class="review-section">
+                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Position & Education</h3>
+                        <p><strong>Applying for:</strong> ${formData.position}</p>
+                        <p><strong>Qualification:</strong> ${formData.qualification}</p>
+                        <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
+                        <p><strong>Education Place:</strong> ${formData.educationPlace}</p>
+                    </div>
+
+                    <div class="review-section">
+                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Skills & Languages</h3>
+                        <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
+                        <p><strong>Drive Car:</strong> ${formData.skillCar}</p>
+                        <p><strong>License:</strong> ${formData.skillLicense}</p>
+                        <p><strong>Languages:</strong></p>
+                        <ul class="list-disc">${langHtml || '<span class="text-slate-500 ml-4">No languages listed.</span>'}</ul>
+                    </div>
+
+                    <div class="review-section">
+                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Declarations & Reference</h3>
+                        <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
+                        <p><strong>Needs Residential Support:</strong> ${formData.residentialSupport}</p>
+                        <p><strong>Reference:</strong> ${formData.referenceName} (${formData.referenceContact})</p>
+                    </div>
+                    
+                    <div class="review-section">
+                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Additional Notes</h3>
+                        <p>${optional(formData.anythingElse.replace(/\n/g, '<br>'))}</p>
+                    </div>
+                `;
+                
+                // *** NEW ***
+                // Generate the mailto link and set the href of the <a> tag
+                const mailtoUrl = generateMailto();
+                document.getElementById('submit-link-btn').href = mailtoUrl;
+            }
+
+            // --- SUBMISSION LOGIC (MAILTO) ---
+
+            function generateMailto() {
+                gatherFormData(); // Get the latest data
+                
+                const name = formData.fullName;
+                const email = formData.email;
+                const position = formData.position;
+                
+                // Format language skills for text-based email
+                const langText = formData.languages.map(lang => {
+                    const skills = [];
+                    if (lang.read) skills.push('Read');
+                    if (lang.write) skills.push('Write');
+                    if (lang.speak) skills.push('Speak');
+                    return `- ${lang.name} (${skills.join(', ')})`;
+                }).join('\n');
+
+                // Build the email body
+                const body = `
+CLENZZO JOB APPLICATION
+=========================
+Applicant: ${name}
+Position: ${position}
+
+** PLEASE REVIEW AND CLICK SEND TO SUBMIT **
+
+--- PERSONAL DETAILS ---
+Name: ${name}
+Email: ${email}
+Phone: ${formData.phone}
+Marital Status: ${formData.maritalStatus}
+Place of Birth: ${formData.placeOfBirth}
+Address: 
+${formData.currentAddress}
+
+--- POSITION & EDUCATION ---
+Applying for: ${position}
+Qualification: ${formData.qualification}
+Discipline: ${formData.discipline || 'N/A'}
+Place of Education: ${formData.educationPlace}
+
+--- SKILLS & LANGUAGES ---
+Ride Motorcycle: ${formData.skillMotorcycle}
+Drive Car: ${formData.skillCar}
+License: ${formData.skillLicense}
+Languages:
+${langText || 'N/A'}
+
+--- DECLARATIONS & REFERENCE ---
+Criminal Cases: ${formData.criminalCase}
+Needs Residential Support: ${formData.residentialSupport}
+Reference: ${formData.referenceName}
+Reference Contact: ${formData.referenceContact}
+
+--- ADDITIONAL NOTES ---
+${formData.anythingElse || 'N/A'}
+
+=========================
+--- DISCLAIMER AGREEMENT ---
+The applicant has read and agreed to the following terms:
+- 3-month probation period at 60% salary.
+- 1-year minimum employment commitment.
+- Adherence to specified working hours (5am-6pm for Operations, 9am-6pm for Admin).
+                `;
+                
+                const to = 'admin@clenzzo.com'; // As specified in prompt
+                const cc = email;
+                const subject = `Application: ${position} - ${name}`;
+                
+                // Encode components for a robust mailto link
+                const mailtoUrl = `mailto:${to}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                return mailtoUrl;
+            }
+
+            // --- EVENT LISTENERS ---
+
+            // Page 1: Welcome
+            document.getElementById('start-btn').addEventListener('click', () => {
+                navigateTo('disclaimer');
+            });
+            
+            // Page 2: Disclaimer
+            document.getElementById('agree-checkbox').addEventListener('change', (e) => {
+                const continueBtn = document.getElementById('disclaimer-continue-btn');
+                if (e.target.checked) {
+                    continueBtn.disabled = false;
+                    continueBtn.classList.remove('btn-disabled');
+                    continueBtn.classList.add('btn-primary');
+                } else {
+                    continueBtn.disabled = true;
+                    continueBtn.classList.add('btn-disabled');
+                    continueBtn.classList.remove('btn-primary');
+                }
+            });
+            
+            document.getElementById('disclaimer-continue-btn').addEventListener('click', (e) => {
+                if (e.target.disabled) return;
+                navigateTo('form');
+                showStep(0);
+                // Add one language field by default
+                if (document.getElementById('language-list').children.length === 0) {
+                    addLanguageField();
+                }
+            });
+            
+            // Page 3: Form
+            positionSelect.addEventListener('change', (e) => {
+                const qualification = positionQualifications[e.target.value];
+                if (qualification) {
+                    positionDetails.textContent = qualification;
+                    positionDetails.classList.remove('hidden');
+                } else {
+                    positionDetails.classList.add('hidden');
+                }
+            });
+            
+            document.getElementById('add-language-btn').addEventListener('click', addLanguageField);
+            
+            nextBtn.addEventListener('click', () => {
+                if (validateCurrentStep()) {
+                    if (currentStep === totalSteps - 1) {
+                        // Last step, go to review
+                        buildReviewPage(); // This now also sets the 'submit-link-btn' href
+                        navigateTo('review');
+                    } else {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+            
+            // Page 4: Review
+            document.getElementById('edit-btn').addEventListener('click', () => {
+                navigateTo('form');
+                // Stays on the last viewed step, which is good
+                showStep(currentStep);
+            });
+            
+            // *** MODIFIED ***
+            // Add click listener to the <a> tag
+            document.getElementById('submit-link-btn').addEventListener('click', () => {
+                // We just need to navigate to success.
+                // The browser will handle the 'href' (the mailto) on its own.
+                navigateTo('success');
+            });
+            
+            // Page 5: Success
+            // *** MODIFIED ***
+            // Add click listener to the <a> tag
+            document.getElementById('resend-link-btn').addEventListener('click', (e) => {
+                // When the resend link is clicked, we must re-generate the
+                // mailto URL and set its href just before the browser follows it.
+                const url = generateMailto();
+                e.target.href = url;
+                // The browser will now follow the newly set href.
+            });
+            
+        });
+    </script>
+    
+</body>
+</html>
+
+
