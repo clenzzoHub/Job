@@ -17,7 +17,6 @@
     <style type="text/tailwindcss">
         body {
             font-family: 'Montserrat', sans-serif;
-            /* Added smooth scroll behavior for better navigation on review */
             scroll-behavior: smooth;
         }
         
@@ -72,6 +71,15 @@
                 Clenzzo is aspiring to become India’s #1 cleaning partner, driven by technology, quality, and a passion for excellence. We look for partners, not just employees.
             </p>
             
+            <!-- *** NEW: "Who We're Looking For" section *** -->
+            <h2 class="text-xl font-bold text-white mb-3">Who We're Looking For</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Ambitious & Driven</span>
+                <span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Customer-Obsessed</span>
+                <span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Punctual & Reliable</span>
+                <span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">A Team Player</span>
+            </div>
+
             <h2 class="text-xl font-bold text-white mb-3">What We Offer</h2>
             <ul class="list-disc list-inside space-y-2 text-slate-300 mb-8">
                 <li>Employee Development Programs</li>
@@ -85,38 +93,44 @@
         </div>
 
         <!-- ===== PAGE 2: DISCLAIMER ===== -->
+        <!-- *** MODIFIED: Re-styled "Disclaimer" page *** -->
         <div id="page-disclaimer" class="p-6 md:p-8 hidden">
-            <h1 class="text-3xl font-bold text-white mb-4">Terms of Engagement</h1>
-            <p class="text-slate-400 mb-4">Please read and agree to the following terms before proceeding.</p>
+            <h1 class="text-3xl font-bold text-white mb-4">Our Mutual Commitment</h1>
+            <p class="text-slate-400 mb-6">We believe in transparency. Here's what we agree on:</p>
             
-            <!-- Scrollable Disclaimer Box -->
-            <div class="disclaimer-box h-64 overflow-y-auto bg-slate-900 p-4 rounded-lg border border-slate-700 space-y-4 text-slate-300">
-                <h3 class="font-bold text-white">1. Probation Period</h3>
-                <p>All positions are subject to a mandatory 3-month (90-day) probation period. During this time, the salary will be 60% of the committed CTC.</p>
-                
-                <h3 class="font-bold text-white">2. Minimum Commitment</h3>
-                <p>You agree to a minimum employment commitment of one (1) year with Clenzzo Cleaning Services Private Limited.</p>
-                
-                <h3 class="font-bold text-white">3. Working Hours</h3>
-                <p>You agree to adhere to the designated working hours for your role:</p>
-                <ul class="list-disc list-inside ml-4">
-                    <li><strong>Supervisors & Detailers:</strong> 5:00 AM to 6:00 PM (with designated breaks)</li>
-                    <li><strong>Admin & Management:</strong> 9:00 AM to 6:00 PM</li>
-                </ul>
-                <p class="mt-2">Flexibility is required based on business needs.</p>
-
-                <h3 class="font-bold text-white">4. Data Privacy</h3>
-                <p>You consent to Clenzzo collecting and processing the personal data provided in this application for recruitment purposes.</p>
+            <div class="space-y-4 text-slate-300">
+                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700">
+                    <span class="text-2xl mt-1">📅</span>
+                    <div>
+                        <h3 class="font-bold text-white">3-Month Probation</h3>
+                        <p class="text-sm text-slate-400">A 90-day period at 60% salary for us to ensure we're a perfect fit.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700">
+                    <span class="text-2xl mt-1">🤝</span>
+                    <div>
+                        <h3 class="font-bold text-white">1-Year Commitment</h3>
+                        <p class="text-sm text-slate-400">We invest a lot in your training and ask for a 1-year commitment in return.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700">
+                    <span class="text-2xl mt-1">⏰</span>
+                    <div>
+                        <h3 class="font-bold text-white">Working Hours</h3>
+                        <p class="text-sm text-slate-400">5am-6pm (Operations) or 9am-6pm (Admin), as per your role.</p>
+                    </div>
+                </div>
             </div>
             
             <!-- Agreement Checkbox -->
             <div class="mt-6 flex items-center">
                 <input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-teal-500 focus:ring-teal-500 rounded">
-                <label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to the terms.</label>
+                <label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to these terms.</label>
             </div>
             
             <button id="disclaimer-continue-btn" class="btn btn-disabled mt-6" disabled>I Agree & Continue</button>
         </div>
+
 
         <!-- ===== PAGE 3: MULTI-STEP FORM ===== -->
         <div id="page-form" class="p-6 md:p-8 hidden">
@@ -127,20 +141,20 @@
 
             <form id="application-form">
                 <!-- Step 1: Full Name -->
-                <div class="question-step" data-step="1">
+                <div class="question-step" data-step="0">
                     <label for="fullName" class="block text-xl font-bold mb-3">What is your full name?</label>
                     <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g., Ramesh Kumar" required>
                 </div>
 
                 <!-- Step 2: Contact -->
-                <div class="question-step hidden" data-step="2">
+                <div class="question-step hidden" data-step="1">
                     <label for="email" class="block text-xl font-bold mb-3">What is your contact information?</label>
                     <input type="email" id="email" name="email" class="form-input mb-3" placeholder="Email Address" required>
                     <input type="tel" id="phone" name="phone" class="form-input" placeholder="Phone Number" required>
                 </div>
 
                 <!-- Step 3: Position -->
-                <div class="question-step hidden" data-step="3">
+                <div class="question-step hidden" data-step="2">
                     <label for="position" class="block text-xl font-bold mb-3">Which position are you applying for?</label>
                     <select id="position" name="position" class="form-select" required>
                         <option value="" disabled selected>Select a position...</option>
@@ -156,7 +170,7 @@
                 </div>
 
                 <!-- Step 4: Personal Details -->
-                <div class="question-step hidden" data-step="4">
+                <div class="question-step hidden" data-step="3">
                     <label class="block text-xl font-bold mb-3">Tell us about yourself.</label>
                     <select id="maritalStatus" name="maritalStatus" class="form-select mb-3" required>
                         <option value="" disabled selected>Marital Status...</option>
@@ -168,7 +182,7 @@
                 </div>
 
                 <!-- Step 5: Education -->
-                <div class="question-step hidden" data-step="5">
+                <div class="question-step hidden" data-step="4">
                     <label class="block text-xl font-bold mb-3">What is your highest qualification?</label>
                     <input type="text" id="qualification" name="qualification" class="form-input mb-3" placeholder="Qualification (e.g., B.Com, 12th Std)" required>
                     <input type="text" id="discipline" name="discipline" class="form-input mb-3" placeholder="Discipline (e.g., Commerce, Science) (Optional)">
@@ -176,7 +190,7 @@
                 </div>
 
                 <!-- Step 6: Skills -->
-                <div class="question-step hidden" data-step="6">
+                <div class="question-step hidden" data-step="5">
                     <label class="block text-xl font-bold mb-3">What are your driving/riding skills?</label>
                     <select id="skillMotorcycle" name="skillMotorcycle" class="form-select mb-3" required>
                         <option value="" disabled selected>Know how to ride a motorcycle?</option>
@@ -198,7 +212,7 @@
                 </div>
 
                 <!-- Step 7: Languages -->
-                <div class="question-step hidden" data-step="7">
+                <div class="question-step hidden" data-step="6">
                     <label class="block text-xl font-bold mb-3">Which languages do you know?</label>
                     <!-- Container for dynamically added language fields -->
                     <div id="language-list" class="space-y-3">
@@ -208,7 +222,7 @@
                 </div>
 
                 <!-- Step 8: Declarations -->
-                <div class="question-step hidden" data-step="8">
+                <div class="question-step hidden" data-step="7">
                     <label class="block text-xl font-bold mb-3">Declarations</label>
                     <select id="criminalCase" name="criminalCase" class="form-select mb-3" required>
                         <option value="" disabled selected>Any criminal cases?</option>
@@ -223,14 +237,14 @@
                 </div>
 
                 <!-- Step 9: Reference -->
-                <div class="question-step hidden" data-step="9">
+                <div class="question-step hidden" data-step="8">
                     <label for="referenceName" class="block text-xl font-bold mb-3">Please provide one reference.</label>
                     <input type="text" id="referenceName" name="referenceName" class="form-input mb-3" placeholder="Reference Person's Name" required>
                     <input type="tel" id="referenceContact" name="referenceContact" class="form-input" placeholder="Reference Person's Contact Number" required>
                 </div>
 
                 <!-- Step 10: Anything Else -->
-                <div class="question-step hidden" data-step="10">
+                <div class="question-step hidden" data-step="9">
                     <label for="anythingElse" class="block text-xl font-bold mb-3">Anything else to add?</label>
                     <textarea id="anythingElse" name="anythingElse" class="form-textarea" rows="4" placeholder="Optional: Tell us more..."></textarea>
                 </div>
@@ -253,10 +267,11 @@
             </div>
             
             <div class="mt-8 flex gap-4">
-                <button id="edit-btn" class="btn btn-secondary w-1/2">Edit</button>
+                <!-- *** MODIFIED: Removed the old "Edit" button *** -->
+                <!-- <button id="edit-btn" class="btn btn-secondary w-1/2">Edit</button> -->
                 
                 <!-- This <a> tag is styled as a button -->
-                <a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Submit Application</a>
+                <a id="submit-link-btn" href="#" class="btn btn-primary w-full">Submit Application</a>
             </div>
         </div>
 
@@ -280,6 +295,14 @@
                 
                 <!-- This <a> tag is styled as a button -->
                 <a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a>
+
+                <!-- *** NEW: "What's Next?" section *** -->
+                <div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left">
+                    <h3 class="font-bold text-white text-lg mb-2">What's Next?</h3>
+                    <p class="text-slate-300 text-sm">
+                        Our team will review your application. If your profile matches our needs, we will contact you within <strong>5 business days</strong> to schedule an interview.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -325,6 +348,14 @@
                 document.getElementById('app-container').scrollIntoView();
             }
 
+            // *** NEW: jumpToStep function ***
+            // We attach it to 'window' so the inline onclick="jumpToStep(...)" can find it
+            window.jumpToStep = function(stepIndex) {
+                currentStep = stepIndex;
+                navigateTo('form');
+                showStep(currentStep);
+            }
+
             // --- FORM LOGIC ---
             function showStep(stepIndex) {
                 formSteps.forEach((step, index) => {
@@ -350,7 +381,8 @@
                     }
                 });
 
-                if (currentStepElement.dataset.step === "7") {
+                // Corrected step index for language check
+                if (currentStepElement.dataset.step === "6") { 
                     const langList = document.getElementById('language-list');
                     const addLangBtn = document.getElementById('add-language-btn');
                     if (langList.children.length === 0) {
@@ -425,6 +457,7 @@
                 });
             }
             
+            // *** MODIFIED: buildReviewPage function ***
             function buildReviewPage() {
                 gatherFormData();
                 const reviewContent = document.getElementById('review-content');
@@ -439,9 +472,19 @@
                     <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>`).join('');
                 const optional = (val) => val || '<span class="text-slate-500">N/A</span>';
 
+                // We map step indices here: 
+                // Personal (0, 1, 3) -> jumpToStep(0)
+                // Position/Edu (2, 4) -> jumpToStep(2)
+                // Skills/Lang (5, 6) -> jumpToStep(5)
+                // Decls/Ref (7, 8) -> jumpToStep(7)
+                // Notes (9) -> jumpToStep(9)
+
                 reviewContent.innerHTML = `
-                    <div class="review-section">
-                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Personal Details</h3>
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Personal Details</h3>
+                            <button onclick="jumpToStep(0)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
                         <p><strong>Name:</strong> ${formData.fullName}</p>
                         <p><strong>Email:</strong> ${formData.email}</p>
                         <p><strong>Phone:</strong> ${formData.phone}</p>
@@ -449,29 +492,45 @@
                         <p><strong>Place of Birth:</strong> ${formData.placeOfBirth}</p>
                         <p><strong>Address:</strong><br><span class="pl-2">${formData.currentAddress.replace(/\n/g, '<br>')}</span></p>
                     </div>
-                    <div class="review-section">
-                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Position & Education</h3>
+                    
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Position & Education</h3>
+                            <button onclick="jumpToStep(2)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
                         <p><strong>Applying for:</strong> ${formData.position}</p>
                         <p><strong>Qualification:</strong> ${formData.qualification}</p>
                         <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
                         <p><strong>Education Place:</strong> ${formData.educationPlace}</p>
                     </div>
-                    <div class="review-section">
-                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Skills & Languages</h3>
+                    
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Skills & Languages</h3>
+                            <button onclick="jumpToStep(5)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
                         <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
                         <p><strong>Drive Car:</strong> ${formData.skillCar}</p>
                         <p><strong>License:</strong> ${formData.skillLicense}</p>
                         <p><strong>Languages:</strong></p>
                         <ul class="list-disc">${langHtml || '<span class="text-slate-500 ml-4">No languages listed.</span>'}</ul>
                     </div>
-                    <div class="review-section">
-                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Declarations & Reference</h3>
+                    
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Declarations & Reference</h3>
+                            <button onclick="jumpToStep(7)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
                         <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
                         <p><strong>Needs Residential Support:</strong> ${formData.residentialSupport}</p>
                         <p><strong>Reference:</strong> ${formData.referenceName} (${formData.referenceContact})</p>
                     </div>
-                    <div class="review-section">
-                        <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Additional Notes</h3>
+                    
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Additional Notes</h3>
+                            <button onclick="jumpToStep(9)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
                         <p>${optional(formData.anythingElse.replace(/\n/g, '<br>'))}</p>
                     </div>`;
                 
@@ -481,7 +540,7 @@
 
             // --- SUBMISSION LOGIC (MAILTO) ---
 
-            // *** MODIFIED FUNCTION ***
+            // *** MODIFIED: generateMailto function ***
             function generateMailto() {
                 gatherFormData(); // Get the latest data
                 
@@ -499,7 +558,16 @@
                 }).join('\n');
 
                 // Build the email body from the user's point of view
-                const body = `Dear Clenzzo Hiring Team,
+                const body = `
+--- HIRING MANAGER QUICK VIEW ---
+Name: ${name}
+Position: ${position}
+Phone: ${formData.phone}
+License: ${formData.skillLicense}
+Needs Residence: ${formData.residentialSupport}
+---------------------------------
+
+Dear Clenzzo Hiring Team,
 
 I am writing to apply for the position of ${position}. Please find my application details below.
 
@@ -615,10 +683,7 @@ ${name}
             });
             
             // Page 4: Review
-            document.getElementById('edit-btn').addEventListener('click', () => {
-                navigateTo('form');
-                showStep(currentStep);
-            });
+            // *** (No 'edit-btn' listener anymore) ***
             
             document.getElementById('submit-link-btn').addEventListener('click', () => {
                 // We just need to navigate to success.
@@ -639,5 +704,4 @@ ${name}
     
 </body>
 </html>
-
 
