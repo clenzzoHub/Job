@@ -255,10 +255,7 @@
             <div class="mt-8 flex gap-4">
                 <button id="edit-btn" class="btn btn-secondary w-1/2">Edit</button>
                 
-                <!-- *** MODIFIED ***
-                     Changed <button> to <a> tag. It is styled as 'btn' and 'btn-primary'.
-                     The href is set to '#' as a placeholder. JS will update it.
-                -->
+                <!-- This <a> tag is styled as a button -->
                 <a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Submit Application</a>
             </div>
         </div>
@@ -269,21 +266,19 @@
                 <!-- Success Icon -->
                 <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 
-                <h1 class="text-3xl font-bold text-white mb-3">Almost There!</h1>
+                <h1 class="text-3xl font-bold text-white mb-3">Success!</h1>
                 <p class="text-slate-300 mb-6 text-lg">
                     Your email client should be open.
                 </p>
-                <!-- Highlighted instruction box -->
+                <!-- Updated instruction box -->
                 <p class="text-teal-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-teal-800">
-                    Please review the information in the email and click 'Send' to finalize your application.
+                    Please review your application email and click 'Send' to submit it.
                 </p>
                 <p class="text-slate-400 mt-6">
                     If your email client did not open, click the button below.
                 </p>
                 
-                <!-- *** MODIFIED ***
-                     Changed <button> to <a> tag.
-                -->
+                <!-- This <a> tag is styled as a button -->
                 <a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a>
             </div>
         </div>
@@ -295,7 +290,6 @@
             
             // --- STATE & ELEMENTS ---
             let currentStep = 0;
-            // A map of all pages for easy navigation
             const pages = {
                 welcome: document.getElementById('page-welcome'),
                 disclaimer: document.getElementById('page-disclaimer'),
@@ -306,7 +300,7 @@
             
             const formSteps = document.querySelectorAll('.question-step');
             const totalSteps = formSteps.length;
-            const formData = {}; // Will hold all data for review and submission
+            const formData = {}; // Will hold all data
             
             const progressBar = document.getElementById('progress-bar');
             const nextBtn = document.getElementById('next-btn');
@@ -315,7 +309,6 @@
             const positionSelect = document.getElementById('position');
             const positionDetails = document.getElementById('position-details');
             
-            // Qualifications map
             const positionQualifications = {
                 "Supervising Officer": "Requires 2+ years of team lead experience and a valid 2/4-wheeler license.",
                 "Detailer": "Requires physical fitness, attention to detail, and a 2-wheeler license.",
@@ -325,13 +318,10 @@
 
             // --- NAVIGATION ---
             function navigateTo(pageKey) {
-                // Hide all pages
                 Object.values(pages).forEach(page => page.classList.add('hidden'));
-                // Show the target page
                 if (pages[pageKey]) {
                     pages[pageKey].classList.remove('hidden');
                 }
-                // Scroll to top of container on page change
                 document.getElementById('app-container').scrollIntoView();
             }
 
@@ -340,29 +330,18 @@
                 formSteps.forEach((step, index) => {
                     step.classList.toggle('hidden', index !== stepIndex);
                 });
-                
-                // Update Progress Bar
                 progressBar.style.width = `${((stepIndex + 1) / totalSteps) * 100}%`;
-                
-                // Update Buttons
                 prevBtn.classList.toggle('hidden', stepIndex === 0);
                 prevBtn.classList.toggle('opacity-50', stepIndex === 0);
-
-                if (stepIndex === totalSteps - 1) {
-                    nextBtn.textContent = 'Review Application';
-                } else {
-                    nextBtn.textContent = 'Next';
-                }
+                nextBtn.textContent = (stepIndex === totalSteps - 1) ? 'Review Application' : 'Next';
             }
 
             function validateCurrentStep() {
                 const currentStepElement = formSteps[currentStep];
-                // Get all required inputs within the current step
                 const inputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
                 let isValid = true;
                 
                 inputs.forEach(input => {
-                    // Check if input is visible and empty
                     if (input.offsetWidth > 0 && !input.value.trim()) {
                         input.classList.add('border-red-500', 'focus:ring-red-500');
                         isValid = false;
@@ -371,17 +350,13 @@
                     }
                 });
 
-                // Special check for languages step
                 if (currentStepElement.dataset.step === "7") {
                     const langList = document.getElementById('language-list');
                     const addLangBtn = document.getElementById('add-language-btn');
-                    
                     if (langList.children.length === 0) {
-                        // If no languages added, mark button as invalid
                         addLangBtn.classList.add('ring-2', 'ring-red-500');
                         isValid = false;
                     } else {
-                        // If languages exist, check if the name is filled
                         const langInputs = langList.querySelectorAll('input[required]');
                         langInputs.forEach(langInput => {
                             if (!langInput.value.trim()) {
@@ -394,15 +369,12 @@
                         addLangBtn.classList.remove('ring-2', 'ring-red-500');
                     }
                 }
-                
                 return isValid;
             }
 
             function addLanguageField() {
                 const list = document.getElementById('language-list');
                 const langIndex = list.children.length;
-                
-                // Template for a new language entry
                 const langFieldHTML = `
                     <div class="language-item bg-slate-900 p-3 rounded-lg border border-slate-700">
                         <input type="text" class="form-input mb-2" placeholder="Language (e.g., Tamil)" data-lang-name="${langIndex}" required>
@@ -411,19 +383,14 @@
                             <label class="flex items-center"><input type="checkbox" class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded" data-lang-write="${langIndex}"> <span class="ml-2">Write</span></label>
                             <label class="flex items-center"><input type="checkbox" class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded" data-lang-speak="${langIndex}"> <span class="ml-2">Speak</span></label>
                         </div>
-                    </div>
-                `;
+                    </div>`;
                 list.insertAdjacentHTML('beforeend', langFieldHTML);
-                
-                // New language field is added, remove error ring from button if present
                 document.getElementById('add-language-btn').classList.remove('ring-2', 'ring-red-500');
             }
 
             // --- DATA GATHERING & REVIEW ---
             function gatherFormData() {
-                // Helper to get value
                 const getValue = (id) => document.getElementById(id).value.trim();
-
                 formData.fullName = getValue('fullName');
                 formData.email = getValue('email');
                 formData.phone = getValue('phone');
@@ -443,12 +410,11 @@
                 formData.referenceContact = getValue('referenceContact');
                 formData.anythingElse = getValue('anythingElse');
                 
-                // Gather Languages
                 formData.languages = [];
                 const langItems = document.querySelectorAll('.language-item');
                 langItems.forEach((item, index) => {
                     const name = item.querySelector(`[data-lang-name="${index}"]`).value.trim();
-                    if (name) { // Only add if name is not empty
+                    if (name) {
                         formData.languages.push({
                             name: name,
                             read: item.querySelector(`[data-lang-read="${index}"]`).checked,
@@ -460,10 +426,8 @@
             }
             
             function buildReviewPage() {
-                gatherFormData(); // Ensure data is fresh
+                gatherFormData();
                 const reviewContent = document.getElementById('review-content');
-                
-                // Helper function to format language skills
                 const formatLangSkills = (lang) => {
                     const skills = [];
                     if (lang.read) skills.push('Read');
@@ -471,15 +435,10 @@
                     if (lang.speak) skills.push('Speak');
                     return skills.length ? skills.join(', ') : 'N/A';
                 };
-
                 const langHtml = formData.languages.map(lang => `
-                    <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>
-                `).join('');
-                
-                // Helper for optional fields
+                    <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>`).join('');
                 const optional = (val) => val || '<span class="text-slate-500">N/A</span>';
 
-                // Inject HTML into review content
                 reviewContent.innerHTML = `
                     <div class="review-section">
                         <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Personal Details</h3>
@@ -490,7 +449,6 @@
                         <p><strong>Place of Birth:</strong> ${formData.placeOfBirth}</p>
                         <p><strong>Address:</strong><br><span class="pl-2">${formData.currentAddress.replace(/\n/g, '<br>')}</span></p>
                     </div>
-
                     <div class="review-section">
                         <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Position & Education</h3>
                         <p><strong>Applying for:</strong> ${formData.position}</p>
@@ -498,7 +456,6 @@
                         <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
                         <p><strong>Education Place:</strong> ${formData.educationPlace}</p>
                     </div>
-
                     <div class="review-section">
                         <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Skills & Languages</h3>
                         <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
@@ -507,28 +464,24 @@
                         <p><strong>Languages:</strong></p>
                         <ul class="list-disc">${langHtml || '<span class="text-slate-500 ml-4">No languages listed.</span>'}</ul>
                     </div>
-
                     <div class="review-section">
                         <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Declarations & Reference</h3>
                         <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
                         <p><strong>Needs Residential Support:</strong> ${formData.residentialSupport}</p>
                         <p><strong>Reference:</strong> ${formData.referenceName} (${formData.referenceContact})</p>
                     </div>
-                    
                     <div class="review-section">
                         <h3 class="text-xl font-bold text-teal-400 border-b border-slate-700 pb-2 mb-3">Additional Notes</h3>
                         <p>${optional(formData.anythingElse.replace(/\n/g, '<br>'))}</p>
-                    </div>
-                `;
+                    </div>`;
                 
-                // *** NEW ***
-                // Generate the mailto link and set the href of the <a> tag
                 const mailtoUrl = generateMailto();
                 document.getElementById('submit-link-btn').href = mailtoUrl;
             }
 
             // --- SUBMISSION LOGIC (MAILTO) ---
 
+            // *** MODIFIED FUNCTION ***
             function generateMailto() {
                 gatherFormData(); // Get the latest data
                 
@@ -545,53 +498,50 @@
                     return `- ${lang.name} (${skills.join(', ')})`;
                 }).join('\n');
 
-                // Build the email body
-                const body = `
-CLENZZO JOB APPLICATION
-=========================
-Applicant: ${name}
-Position: ${position}
+                // Build the email body from the user's point of view
+                const body = `Dear Clenzzo Hiring Team,
 
-** PLEASE REVIEW AND CLICK SEND TO SUBMIT **
+I am writing to apply for the position of ${position}. Please find my application details below.
 
---- PERSONAL DETAILS ---
-Name: ${name}
-Email: ${email}
-Phone: ${formData.phone}
-Marital Status: ${formData.maritalStatus}
-Place of Birth: ${formData.placeOfBirth}
-Address: 
+--- MY APPLICATION DETAILS ---
+
+Personal Information:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${formData.phone}
+- Marital Status: ${formData.maritalStatus}
+- Place of Birth: ${formData.placeOfBirth}
+- Address:
 ${formData.currentAddress}
 
---- POSITION & EDUCATION ---
-Applying for: ${position}
-Qualification: ${formData.qualification}
-Discipline: ${formData.discipline || 'N/A'}
-Place of Education: ${formData.educationPlace}
+Education:
+- Qualification: ${formData.qualification}
+- Discipline: ${formData.discipline || 'N/A'}
+- Place of Education: ${formData.educationPlace}
 
---- SKILLS & LANGUAGES ---
-Ride Motorcycle: ${formData.skillMotorcycle}
-Drive Car: ${formData.skillCar}
-License: ${formData.skillLicense}
-Languages:
+Skills & Languages:
+- Ride Motorcycle: ${formData.skillMotorcycle}
+- Drive Car: ${formData.skillCar}
+- License: ${formData.skillLicense}
+- Languages:
 ${langText || 'N/A'}
 
---- DECLARATIONS & REFERENCE ---
-Criminal Cases: ${formData.criminalCase}
-Needs Residential Support: ${formData.residentialSupport}
-Reference: ${formData.referenceName}
-Reference Contact: ${formData.referenceContact}
+Declarations & Reference:
+- Criminal Cases: ${formData.criminalCase}
+- Needs Residential Support: ${formData.residentialSupport}
+- Reference: ${formData.referenceName} (${formData.referenceContact})
 
---- ADDITIONAL NOTES ---
+Additional Notes:
 ${formData.anythingElse || 'N/A'}
 
-=========================
---- DISCLAIMER AGREEMENT ---
-The applicant has read and agreed to the following terms:
-- 3-month probation period at 60% salary.
-- 1-year minimum employment commitment.
-- Adherence to specified working hours (5am-6pm for Operations, 9am-6pm for Admin).
-                `;
+--- AGREEMENT ---
+I confirm that I have read and agreed to the terms of engagement, including the 3-month probation period, 1-year minimum commitment, and specified working hours.
+
+Thank you for your time and consideration.
+
+Sincerely,
+${name}
+`;
                 
                 const to = 'admin@clenzzo.com'; // As specified in prompt
                 const cc = email;
@@ -627,7 +577,6 @@ The applicant has read and agreed to the following terms:
                 if (e.target.disabled) return;
                 navigateTo('form');
                 showStep(0);
-                // Add one language field by default
                 if (document.getElementById('language-list').children.length === 0) {
                     addLanguageField();
                 }
@@ -649,7 +598,6 @@ The applicant has read and agreed to the following terms:
             nextBtn.addEventListener('click', () => {
                 if (validateCurrentStep()) {
                     if (currentStep === totalSteps - 1) {
-                        // Last step, go to review
                         buildReviewPage(); // This now also sets the 'submit-link-btn' href
                         navigateTo('review');
                     } else {
@@ -669,12 +617,9 @@ The applicant has read and agreed to the following terms:
             // Page 4: Review
             document.getElementById('edit-btn').addEventListener('click', () => {
                 navigateTo('form');
-                // Stays on the last viewed step, which is good
                 showStep(currentStep);
             });
             
-            // *** MODIFIED ***
-            // Add click listener to the <a> tag
             document.getElementById('submit-link-btn').addEventListener('click', () => {
                 // We just need to navigate to success.
                 // The browser will handle the 'href' (the mailto) on its own.
@@ -682,11 +627,8 @@ The applicant has read and agreed to the following terms:
             });
             
             // Page 5: Success
-            // *** MODIFIED ***
-            // Add click listener to the <a> tag
             document.getElementById('resend-link-btn').addEventListener('click', (e) => {
-                // When the resend link is clicked, we must re-generate the
-                // mailto URL and set its href just before the browser follows it.
+                // Re-generate the mailto URL and set its href
                 const url = generateMailto();
                 e.target.href = url;
                 // The browser will now follow the newly set href.
