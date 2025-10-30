@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- 3. Custom Styling & Tailwind Configuration -->
+    <!-- 3. Custom Styling & Tailwind Configuration (TEAL THEME) -->
     <style type="text/tailwindcss">
         body {
             font-family: 'Montserrat', sans-serif;
@@ -21,11 +21,11 @@
         }
         
         .form-input, .form-select, .form-textarea {
-            @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200;
+            @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-200;
         }
         
         .form-textarea-small {
-            @apply w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200;
+            @apply w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-200;
         }
 
         .is-invalid {
@@ -41,8 +41,8 @@
         }
         
         .btn-primary {
-            @apply bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75;
-            @apply hover:shadow-lg hover:shadow-blue-500/30;
+            @apply bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-75;
+            @apply hover:shadow-lg hover:shadow-teal-500/30;
         }
         
         .btn-secondary {
@@ -72,8 +72,8 @@
         .segment-card {
             @apply bg-slate-900 p-4 rounded-lg border border-slate-700 flex items-center justify-between transition duration-300;
         }
-        .segment-card-todo { @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer; }
-        .segment-card-inprogress { @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer; }
+        .segment-card-todo { @apply hover:bg-slate-700 hover:border-teal-500 cursor-pointer; }
+        .segment-card-inprogress { @apply hover:bg-slate-700 hover:border-teal-500 cursor-pointer; }
         .segment-card-complete { @apply border-green-700 hover:bg-green-900/50 cursor-pointer; }
     </style>
 </head>
@@ -93,14 +93,20 @@
 
         <!-- ===== PAGE 1: WELCOME ===== -->
         <div id="page-welcome" class="p-6 md:p-8">
-            <div class="text-center mb-6"><img src="https://lh3.googleusercontent.com/d/1mAxNMp4-N-4FpIi_BPZZfCCaK5RCxVUH" alt="Clenzzo Logo" class="h-16 w-auto mx-auto mb-4" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')"><span id="logo-fallback" class="text-4xl font-bold text-blue-400 hidden">CLENZZO</span><p class="text-sm text-slate-400">Premium Waterless Car Care</p></div>
+            <div class="text-center mb-6"><img src="https://lh3.googleusercontent.com/d/1mAxNMp4-N-4FpIi_BPZZfCCaK5RCxVUH" alt="Clenzzo Logo" class="h-16 w-auto mx-auto mb-4" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')"><span id="logo-fallback" class="text-4xl font-bold text-teal-400 hidden">CLENZZO</span><p class="text-sm text-slate-400">Premium Waterless Car Care</p></div>
             <h1 class="text-2xl font-bold text-white mb-4 text-center">Join the Clenzzo Revolution</h1>
             <p class="text-slate-300 mb-6">We're looking for partners, not just employees, to help us become India’s #1 cleaning partner.</p>
+            
+            <!-- NEW: Desktop/Mobile Note -->
+            <div class="p-3 bg-slate-900 rounded-lg border border-slate-700 mb-6 text-center">
+                <p class="text-slate-300 text-sm">For the best experience, we recommend applying on a **mobile device**.</p>
+            </div>
+
             <div class="p-4 bg-slate-900 rounded-lg border border-slate-700 mb-6"><h3 class="font-bold text-white text-lg mb-2">Know Us First!</h3><p class="text-slate-300 text-sm mb-3">Before you apply, please visit our website to understand our mission and services.</p><a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-slate-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition duration-200">Visit clenzzo.com</a></div>
             <h2 class="text-xl font-bold text-white mb-4">Who We're Looking For</h2>
-            <div class="flex flex-wrap gap-2 mb-6"><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Ambitious & Driven</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Customer-Obsessed</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Punctual & Reliable</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">A Team Player</span></div>
+            <div class="flex flex-wrap gap-2 mb-6"><span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Ambitious & Driven</span><span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Customer-Obsessed</span><span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">Punctual & Reliable</span><span class="bg-teal-800 text-teal-100 py-1 px-3 rounded-full text-sm font-medium">A Team Player</span></div>
             <h2 class="text-xl font-bold text-white mb-4">What We Offer</h2>
-            <div class="space-y-3 text-slate-300 mb-8"><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg><span>Employee Development Programs</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg><span>Quarterly Promotions & Appraisals</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span>Competitive Salary & Incentives</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.084-1.284-.24-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.084-1.284.24-1.857m11.52 0l-1.52-1.52a3 3 0 00-4.24 0l-1.52 1.52m3-3l-4.5-4.5-4.5 4.5m1.5-1.5l.75.75M3 18v-2a3 3 0 013-3h12a3 3 0 013 3v2" /></svg><span>A Supportive & Driven Team</span></div></div>
+            <div class="space-y-3 text-slate-300 mb-8"><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg><span>Employee Development Programs</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg><span>Quarterly Promotions & Appraisals</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span>Competitive Salary & Incentives</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.084-1.284-.24-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.084-1.284.24-1.857m11.52 0l-1.52-1.52a3 3 0 00-4.24 0l-1.52 1.52m3-3l-4.5-4.5-4.5 4.5m1.5-1.5l.75.75M3 18v-2a3 3 0 013-3h12a3 3 0 013 3v2" /></svg><span>A Supportive & Driven Team</span></div></div>
             <button id="start-btn" class="btn btn-primary">Start Application</button>
         </div>
 
@@ -109,7 +115,7 @@
             <h1 class="text-3xl font-bold text-white mb-4">Our Mutual Commitment</h1>
             <p class="text-slate-400 mb-6">We believe in transparency. Here's what we agree on:</p>
             <div class="space-y-4 text-slate-300"><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">📅</span><div><h3 class="font-bold text-white">3-Month Probation</h3><p class="text-sm text-slate-400">A 90-day period at 60% salary for us to ensure we're a perfect fit.</p></div></div><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">🤝</span><div><h3 class="font-bold text-white">1-Year Commitment</h3><p class="text-sm text-slate-400">We invest a lot in your training and ask for a 1-year commitment in return.</p></div></div><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">⏰</span><div><h3 class="font-bold text-white">Working Hours</h3><p class="text-sm text-slate-400">5am-6pm (Operations) or 9am-6pm (Admin/Marketing), as per your role.</p></div></div></div>
-            <div class="mt-6 flex items-center"><input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-blue-500 focus:ring-blue-500 rounded"><label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to these terms.</label></div>
+            <div class="mt-6 flex items-center"><input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-teal-500 focus:ring-teal-500 rounded"><label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to these terms.</label></div>
             <button id="disclaimer-continue-btn" class="btn btn-disabled mt-6" disabled>I Agree & Continue</button>
         </div>
 
@@ -131,7 +137,7 @@
         <div id="page-segment-hub" class="p-6 md:p-8 hidden">
             <h1 id="hub-greeting" class="text-3xl font-bold text-white mb-2">Welcome!</h1>
             <p class="text-slate-400 mb-6">Let's get your details. Please complete all segments.</p>
-            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span>Overall Progress</span><span id="overall-progress-text">0/6 Segments</span></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
+            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span>Overall Progress</span><span id="overall-progress-text">0/6 Segments</span></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-teal-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
             <div id="segment-list" class="space-y-3"></div>
             <button id="hub-submit-btn" class="btn btn-disabled mt-8" disabled>Proceed to Final Review</button>
         </div>
@@ -139,8 +145,8 @@
         <!-- ===== PAGE 5: QUESTION FLOW (NEW) ===== -->
         <div id="page-question-flow" class="p-6 md:p-8 hidden">
             <h1 id="question-flow-title" class="text-2xl font-bold text-white mb-6">Editing Segment</h1>
-            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span id="segment-progress-label">Step 1 of X</span><button id="question-flow-back-btn" class="text-sm text-blue-400 hover:text-blue-300">&larr; Back to Hub</button></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="segment-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
-            <p id="personal-greeting" class="text-blue-300 mb-4 text-lg hidden"></p>
+            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span id="segment-progress-label">Step 1 of X</span><button id="question-flow-back-btn" class="text-sm text-teal-400 hover:text-teal-300">&larr; Back to Hub</button></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="segment-progress-bar" class="bg-teal-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
+            <p id="personal-greeting" class="text-teal-300 mb-4 text-lg hidden"></p>
 
             <div id="question-flow-wrapper">
                 <form id="application-form">
@@ -339,18 +345,55 @@
             <h1 class="text-3xl font-bold text-white mb-6">Review Your Application</h1>
             <p class="text-slate-400 mb-6">One last look. If you need to make changes, click the 'Edit' button for that section.</p>
             <div id="review-content" class="space-y-6 text-slate-300"></div>
-            <div class="mt-8 flex gap-4"><button id="review-back-btn" class="btn btn-secondary w-1/2">Back to Hub</button><a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Looks Good, Submit!</a></div>
+            <!-- *** MODIFIED: This is now a button, not a link *** -->
+            <div class="mt-8 flex gap-4"><button id="review-back-btn" class="btn btn-secondary w-1/2">Back to Hub</button><button id="review-submit-btn" class="btn btn-primary w-1/2">Looks Good, Continue!</button></div>
         </div>
 
-        <!-- ===== PAGE 7: SUCCESS ===== -->
-        <div id="page-success" class="p-6 md:p-8 hidden">
-            <div class="text-center"><svg class="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h1 id="success-greeting" class="text-3xl font-bold text-white mb-3">Success!</h1><p class="text-slate-300 mb-6 text-lg">Your email client should be open.</p><p class="text-blue-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-blue-800">Please review your application email and click 'Send' to submit it.</p><p class="text-slate-400 mt-6">If your email client did not open, click the button below.</p><a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a><div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left"><h3 class="font-bold text-white text-lg mb-2">What's Next?</h3><p class="text-slate-300 text-sm">Our team will review your application. If your profile matches our needs, we will contact you within <strong>5 business days</strong> to schedule an interview.</p></div></div>
+        <!-- ===== PAGE 7: LAST STEP (WAS SUCCESS) ===== -->
+        <div id="page-last-step" class="p-6 md:p-8 hidden">
+            <div class="text-center">
+                <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <h1 id="last-step-greeting" class="text-3xl font-bold text-white mb-3">Last Step!</h1>
+                <p class="text-slate-300 mb-6 text-lg">Please send your application details.</p>
+                <p class="text-teal-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-teal-800">
+                    WhatsApp is recommended for all devices.
+                </p>
+                
+                <div class="mt-6 space-y-4">
+                    <a id="submit-whatsapp-link-btn" href="#" target="_blank" class="btn btn-primary" style="background-color: #25D366; hover:background-color: #128C7E;">
+                        <span class="flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.06 22L7.32 20.6C8.77 21.41 10.37 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2M12.04 3.67C16.59 3.67 20.28 7.36 20.28 11.91C20.28 16.46 16.59 20.15 12.04 20.15C10.53 20.15 9.09 19.79 7.8 19.12L7.32 18.88L4.8 19.65L5.58 17.21L5.34 16.73C4.6 15.4 4.21 13.7 4.21 11.91C4.21 7.36 7.9 3.67 12.04 3.67M9.22 7.26C9 7.26 8.8 7.26 8.61 7.26C8.42 7.26 8.22 7.26 8.02 7.32C7.83 7.38 7.63 7.44 7.44 7.56C7.25 7.68 7.07 7.83 6.91 8.02C6.75 8.21 6.6 8.41 6.48 8.63C6.36 8.85 6.27 9.09 6.19 9.35C6.12 9.61 6.06 9.88 6.04 10.16C6.03 10.44 6.03 10.73 6.03 11.03C6.03 11.33 6.03 11.63 6.04 11.93C6.06 12.23 6.1 12.51 6.16 12.78C6.22 13.05 6.3 13.3 6.41 13.55C6.51 13.8 6.63 14.04 6.78 14.27C6.93 14.5 7.1 14.71 7.3 14.9C7.5 15.09 7.71 15.26 7.95 15.4C8.19 15.54 8.44 15.66 8.7 15.76C8.96 15.86 9.22 15.93 9.49 15.98C9.76 16.03 10.03 16.06 10.31 16.06C10.59 16.06 10.87 16.05 11.14 16C11.41 15.95 11.67 15.87 11.92 15.77C12.17 15.67 12.41 15.54 12.63 15.39C12.85 15.24 13.06 15.07 13.24 14.87C13.42 14.67 13.58 14.46 13.71 14.22C13.84 13.98 13.95 13.73 14.04 13.46C14.13 13.19 14.19 12.91 14.24 12.62C14.29 12.33 14.31 12.04 14.3 11.73C14.29 11.42 14.26 11.11 14.21 10.79C14.16 10.47 14.08 10.16 13.98 9.85C13.88 9.54 13.76 9.25 13.62 8.97C13.48 8.69 13.31 8.42 13.13 8.17C12.95 7.92 12.75 7.7 12.53 7.5C12.31 7.3 12.07 7.13 11.82 7C11.57 6.87 11.31 6.77 11.04 6.69C10.77 6.61 10.49 6.56 10.2 6.53C9.91 6.5 9.61 6.5 9.3 6.5C9.28 6.5 9.26 6.5 9.24 6.5C8.96 6.5 8.68 6.5 8.41 6.5C8.14 6.5 7.87 6.53 7.6 6.59C7.33 6.65 7.07 6.73 6.82 6.85C6.57 6.97 6.33 7.12 6.1 7.29C5.87 7.46 5.66 7.66 5.47 7.88C5.28 8.1 5.11 8.34 4.97 8.6C4.83 8.86 4.71 9.13 4.62 9.42C4.53 9.71 4.47 10 4.44 10.3C4.41 10.6 4.41 10.91 4.41 11.22C4.41 11.53 4.41 11.85 4.44 12.16C4.47 12.47 4.53 12.78 4.62 13.08C4.71 13.38 4.83 13.67 4.97 13.95C5.11 14.23 5.28 14.5 5.47 14.75C5.66 15 5.87 15.22 6.1 15.41C6.33 15.6 6.57 15.76 6.82 15.9C7.07 16.04 7.33 16.15 7.6 16.23C7.87 16.31 8.14 16.36 8.41 16.39C8.68 16.42 8.96 16.42 9.24 16.42C9.52 16.42 9.79 16.42 10.06 16.39C10.33 16.36 10.6 16.3 10.86 16.21C11.12 16.12 11.37 16 11.6 15.86C11.83 15.72 12.05 15.56 12.25 15.37C12.45 15.18 12.63 14.97 12.79 14.74C12.95 14.51 13.08 14.26 13.19 14C13.3 13.74 13.38 13.47 13.44 13.19C13.5 12.91 13.54 12.63 13.56 12.34C13.58 12.05 13.58 11.75 13.58 11.45C13.58 11.15 13.58 10.84 13.56 10.54C13.54 10.24 13.5 9.95 13.44 9.67C13.38 9.39 13.3 9.12 13.19 8.86C13.08 8.6 12.95 8.35 12.79 8.12C12.63 7.89 12.45 7.68 12.25 7.49C12.05 7.3 11.83 7.14 11.6 7C11.37 6.86 11.12 6.76 10.86 6.68C10.6 6.6 10.33 6.55 10.06 6.52C9.79 6.49 9.52 6.49 9.24 6.49C9.24 6.49 9.23 6.49 9.22 7.26Z"></path></svg>
+                            Submit via WhatsApp
+                        </span>
+                    </a>
+                    <a id="resend-email-link-btn" href="#" class="btn btn-secondary">Submit via Email (Fallback)</a>
+                </div>
+
+                <div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left">
+                    <p class="text-slate-300 text-sm">If you are on a desktop, clicking WhatsApp will open WhatsApp Web. If you don't have it set up, please use your mobile phone to complete the application.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 8: THANK YOU (NEW) ===== -->
+        <div id="page-thank-you" class="p-6 md:p-8 hidden">
+            <div class="text-center">
+                <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h1 id="thank-you-greeting" class="text-3xl font-bold text-white mb-3">Thank You!</h1>
+                <p class="text-slate-300 mb-6 text-lg">
+                    Your application has been sent.
+                </p>
+                <div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left">
+                    <h3 class="font-bold text-white text-lg mb-2">What's Next?</h3>
+                    <p class="text-slate-300 text-sm">Our team will review your application. If your profile matches our needs, we will contact you within <strong>5 business days</strong> to schedule an interview.</p>
+                </div>
+            </div>
         </div>
 
         <!-- ===== BRANDING FOOTER ===== -->
         <footer class="p-4 text-center text-xs text-slate-500 border-t border-slate-700">
             © <span id="current-year"></span> Clenzzo. All rights reserved.
-            <a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" class="ml-2 hover:text-blue-400">clenzzo.com</a>
+            <a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" class="ml-2 hover:text-teal-400">clenzzo.com</a>
         </footer>
     </div>
 
@@ -372,7 +415,8 @@
                 segmentHub: document.getElementById('page-segment-hub'),
                 questionFlow: document.getElementById('page-question-flow'),
                 review: document.getElementById('page-review'),
-                success: document.getElementById('page-success')
+                lastStep: document.getElementById('page-last-step'), // Renamed
+                thankYou: document.getElementById('page-thank-you')  // New
             };
             
             const formWrapper = document.getElementById('question-flow-wrapper');
@@ -645,6 +689,10 @@
                     }, 300);
                 }
                 
+                if (stepToShow.dataset.step === "17" && document.getElementById('language-list').children.length === 0) {
+                    addLanguageField();
+                }
+                
                 currentSegmentQuestionIndex = index;
                 updateSegmentProgress();
             }
@@ -681,9 +729,9 @@
                         <input type="text" id="lang-name-${langIndex}" data-rule-key="lang-name" class="form-input mb-2" placeholder="Language (e.g., Tamil)" value="${lang.name}" required>
                         <div id="lang-name-${langIndex}-error" class="validation-message"></div>
                         <div class="flex flex-wrap gap-4 text-sm mt-2">
-                            <label class="flex items-center"><input type="checkbox" data-lang-read="${langIndex}" ${lang.read ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Read</span></label>
-                            <label class="flex items-center"><input type="checkbox" data-lang-write="${langIndex}" ${lang.write ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Write</span></label>
-                            <label class="flex items-center"><input type="checkbox" data-lang-speak="${langIndex}" ${lang.speak ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Speak</span></label>
+                            <label class="flex items-center"><input type="checkbox" data-lang-read="${langIndex}" ${lang.read ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded"> <span class="ml-2">Read</span></label>
+                            <label class="flex items-center"><input type="checkbox" data-lang-write="${langIndex}" ${lang.write ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded"> <span class="ml-2">Write</span></label>
+                            <label class="flex items-center"><input type="checkbox" data-lang-speak="${langIndex}" ${lang.speak ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-teal-500 focus:ring-teal-500 rounded"> <span class="ml-2">Speak</span></label>
                         </div>
                     </div>`;
                 list.insertAdjacentHTML('beforeend', langFieldHTML);
@@ -764,26 +812,17 @@
                 if (validateCurrentSegmentStep()) {
                     gatherFormData();
                     
-                    // FIX: Check for the "hasExperience" skip
                     if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "12" && formData.hasExperience === 'No') {
-                        // User selected "No", and this is the "hasExperience" question.
-                        // This means we skip step "13" and end the segment.
                         segmentStatus[currentSegmentId] = 'complete';
                         saveProgress();
                         updateSegmentHub();
                         navigateTo('segmentHub');
-                        return; // Exit the click handler
+                        return; 
                     }
-                    // END FIX
                     
                     if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "12" && formData.hasExperience === 'Yes') {
                         if(document.getElementById('experience-container').children.length === 0) {
                             addExperienceField();
-                        }
-                    }
-                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "17") {
-                        if(document.getElementById('language-list').children.length === 0) {
-                            addLanguageField();
                         }
                     }
 
@@ -804,9 +843,7 @@
             navButtons.prev.addEventListener('click', () => {
                 if (currentSegmentQuestionIndex > 0) {
                     
-                    // FIX: Check for the "hasExperience" skip (reverse)
                     if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "14" && formData.hasExperience === 'No') {
-                         // If we are on step 14 and user said "No", previous must be step 12
                         showSegmentQuestion(currentSegmentQuestionIndex, false);
                         currentSegmentQuestionIndex = currentSegmentQuestions.findIndex(q => q.dataset.step === "12");
                         showSegmentQuestion(currentSegmentQuestionIndex, false);
@@ -821,28 +858,31 @@
                 }
             });
             
-            // --- *** BUG FIX: SUBMIT BUTTON LOGIC *** ---
-            document.getElementById('submit-link-btn').addEventListener('click', (e) => {
-                // 1. Generate the mailto link just-in-time
-                const mailtoUrl = generateMailto();
-                e.target.href = mailtoUrl;
+            document.getElementById('add-language-btn').addEventListener('click', () => addLanguageField());
+            document.getElementById('add-experience-btn').addEventListener('click', () => addExperienceField());
+            
+            // --- *** NEW SUBMISSION FLOW *** ---
+            
+            // 1. Review page button
+            document.getElementById('review-submit-btn').addEventListener('click', (e) => {
+                buildSubmissionPage(); // Generate the links
+                navigateTo('lastStep');
+            });
 
-                // 2. Clear progress
+            // 2. WhatsApp button
+            document.getElementById('submit-whatsapp-link-btn').addEventListener('click', () => {
                 clearProgress();
-                
-                // 3. Use a small timeout to let the browser process the href
-                //    before navigating to the success page.
-                setTimeout(() => {
-                    navigateTo('success');
-                }, 100);
+                setTimeout(() => navigateTo('thankYou'), 300); // Navigate after link is opened
             });
             
-            document.getElementById('resend-link-btn').addEventListener('click', (e) => {
-                const url = generateMailto();
-                e.target.href = url;
+            // 3. Email button
+            document.getElementById('resend-email-link-btn').addEventListener('click', () => {
+                clearProgress();
+                setTimeout(() => navigateTo('thankYou'), 300); // Navigate after link is opened
             });
 
-            // --- DATA GATHERING, REVIEW, MAILTO ---
+            // --- DATA GATHERING, REVIEW, MAILTO, WHATSAPP ---
+            
             function gatherFormData() {
                 const getValue = (id) => document.getElementById(id)?.value?.trim() || '';
                 
@@ -919,8 +959,8 @@
                 reviewContent.innerHTML = `
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Basic Info</h3>
-                            <button onclick="jumpToSegment('basicInfo', 0)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Basic Info</h3>
+                            <button onclick="jumpToSegment('basicInfo', 0)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Name:</strong> ${formData.fullName}</p>
                         <p><strong>Email:</strong> ${formData.email}</p>
@@ -932,8 +972,8 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Role & Motivation</h3>
-                            <button onclick="jumpToSegment('roleMotivation', 6)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Role & Motivation</h3>
+                            <button onclick="jumpToSegment('roleMotivation', 6)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Applying for:</strong> ${formData.position}</p>
                         <p><strong>Salary Expectation:</strong> ${formData.salary}</p>
@@ -942,8 +982,8 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Aptitude Questionnaire</h3>
-                            <button onclick="jumpToSegment('questionnaire', 18)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Aptitude Questionnaire</h3>
+                            <button onclick="jumpToSegment('questionnaire', 18)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <div class="space-y-2 text-sm">
                             <p><strong>Q1:</strong> ${formData.questionSet[0]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer1)}</span></p>
@@ -956,8 +996,8 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Education & Experience</h3>
-                            <button onclick="jumpToSegment('eduExperience', 9)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Education & Experience</h3>
+                            <button onclick="jumpToSegment('eduExperience', 9)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Qualification:</strong> ${formData.qualification}</p>
                         <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
@@ -968,8 +1008,8 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Skills & Languages</h3>
-                            <button onclick="jumpToSegment('skillsLanguages', 14)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Skills & Languages</h3>
+                            <button onclick="jumpToSegment('skillsLanguages', 14)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
                         <p><strong>Drive Car:</strong> ${formData.skillCar}</p>
@@ -980,8 +1020,8 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Declarations & Reference</h3>
-                            <button onclick="jumpToSegment('declarations', 23)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Declarations & Reference</h3>
+                            <button onclick="jumpToSegment('declarations', 23)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Availability:</strong> ${formData.availability}</p>
                         <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
@@ -992,21 +1032,29 @@
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-blue-400">Additional Notes</h3>
-                            <button onclick="jumpToSegment('declarations', 29)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <h3 class="text-xl font-bold text-teal-400">Additional Notes</h3>
+                            <button onclick="jumpToSegment('declarations', 29)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p>${optional(formData.anythingElse)}</p>
                     </div>`;
-                
-                const mailtoUrl = generateMailto();
-                document.getElementById('submit-link-btn').href = mailtoUrl;
-                
-                if (formData.fullName) {
-                    document.getElementById('success-greeting').textContent = `Thank You, ${formData.fullName.split(' ')[0]}!`;
-                }
             }
 
-            function generateMailto() {
+            // *** NEW: Pre-builds the submission links ***
+            function buildSubmissionPage() {
+                gatherFormData(); 
+                const mailtoUrl = generateMailto();
+                const whatsappUrl = generateWhatsAppLink();
+                
+                document.getElementById('resend-email-link-btn').href = mailtoUrl;
+                document.getElementById('submit-whatsapp-link-btn').href = whatsappUrl;
+
+                const name = formData.fullName.split(' ')[0] || 'Applicant';
+                document.getElementById('last-step-greeting').textContent = `Last Step, ${name}!`;
+                document.getElementById('thank-you-greeting').textContent = `Thank You, ${name}!`;
+            }
+
+            // --- *** NEW: Generates the full message body *** ---
+            function getFullMessageBody() {
                 gatherFormData(); 
                 
                 const name = formData.fullName;
@@ -1025,7 +1073,8 @@
                     return `- ${exp.role} at ${exp.company} (${exp.duration})`;
                 }).join('\n');
 
-                const body = `
+                // This is the single source of truth for the message
+                return `
 --- HIRING MANAGER QUICK VIEW ---
 Name: ${name}
 Position: ${position}
@@ -1097,25 +1146,35 @@ Declarations & Reference:
 - Reference: ${formData.referenceName} (${formData.referenceContact})
 
 Additional Notes:
-${formData.anythingElse || 'N/Access-Control-Allow-Origin'}
+${formData.anythingElse || 'N/A'}
 
 --- AGREEMENT ---
-I confirm that I have read and agreed to the terms of engagement, including the 3-month probation period, 1-year minimum commitment, and specified working hours.
+I confirm that I have read and agreed to the terms of engagement.
 
 Thank you for your time and consideration.
 
 Sincerely,
 ${name}
 `;
-                
+            }
+
+            function generateMailto() {
+                const body = getFullMessageBody();
                 const to = 'admin@clenzzo.com'; 
-                const cc = email;
-                const subject = `Application: ${position} - ${name}`;
+                const cc = formData.email;
+                const subject = `Application: ${formData.position} - ${formData.fullName}`;
                 return `mailto:${to}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }
+
+            // --- *** NEW: WhatsApp Link Generator *** ---
+            function generateWhatsAppLink() {
+                const body = getFullMessageBody();
+                const phone = '918122213141'; // Your number with country code
+                return `https://wa.me/${phone}?text=${encodeURIComponent(body)}`;
             }
             
             // --- localStorage ---
-            const saveKey = 'clenzzoDraft_v8_validated';
+            const saveKey = 'clenzzoDraft_v9_whatsapp'; // Changed key
             function saveProgress() {
                 gatherFormData();
                 const state = {
@@ -1145,21 +1204,10 @@ ${name}
                 
                 Object.keys(savedData).forEach(key => {
                     const el = document.getElementById(key);
-
-                    // Add a check to ensure element exists before setting its value
-                    if (el) { 
-                        if (el.type === 'checkbox') {
-                            el.checked = savedData[key];
-                        } else {
-                            el.value = savedData[key];
-                        }
-                    }
-
+                    if (el) el.value = savedData[key];
                     if (key === 'fullName') {
-                        const fullNameQ = document.getElementById('fullName-q');
-                        const fullName = document.getElementById('fullName');
-                        if (fullNameQ) fullNameQ.value = savedData[key];
-                        if (fullName) fullName.value = savedData[key]; // Sync both
+                        document.getElementById('fullName-q').value = savedData[key];
+                        document.getElementById('fullName').value = savedData[key]; 
                     }
                 });
                 
@@ -1167,21 +1215,14 @@ ${name}
                 if (savedData.hasExperience === 'Yes' && savedData.experience) {
                     savedData.experience.forEach(addExperienceField);
                 }
+                document.getElementById('agree-checkbox').checked = agreed;
                 
-                const agreeCheckbox = document.getElementById('agree-checkbox');
-                if (agreeCheckbox) {
-                    agreeCheckbox.checked = agreed;
-                    // Manually trigger change to update button state
-                    const continueBtn = document.getElementById('disclaimer-continue-btn');
-                    if (continueBtn) {
-                        continueBtn.disabled = !agreed;
-                        continueBtn.classList.toggle('btn-disabled', !agreed);
-                        continueBtn.classList.toggle('btn-primary', agreed);
-                    }
-                }
+                const continueBtn = document.getElementById('disclaimer-continue-btn');
+                continueBtn.disabled = !agreed;
+                continueBtn.classList.toggle('btn-disabled', !agreed);
+                continueBtn.classList.toggle('btn-primary', agreed);
                 
-                const hubGreeting = document.getElementById('hub-greeting');
-                if (hubGreeting) hubGreeting.textContent = `Welcome, ${firstName}!`;
+                document.getElementById('hub-greeting').textContent = `Welcome, ${firstName}!`;
                 
                 updatePositionDetails();
                 triggerAllCounters();
@@ -1195,15 +1236,10 @@ ${name}
             function setupCounter(textareaId, counterId, maxLength) {
                 const textarea = document.getElementById(textareaId);
                 const counter = document.getElementById(counterId);
-                
-                if (!textarea || !counter) {
-                    return;
-                }
-
+                if (!textarea || !counter) return;
                 const update = () => {
                     counter.textContent = `${textarea.value.length} / ${maxLength}`;
                 };
-                
                 textarea.addEventListener('keyup', update);
                 textarea.addEventListener('change', update);
                 update(); 
@@ -1217,11 +1253,12 @@ ${name}
                 setupCounter('situationalAnswer5', 'situationalAnswer5-counter', 250);
             }
             function updatePositionDetails() {
+                if (!positionSelect) return;
                 const qualification = positionQualifications[positionSelect.value];
-                if (qualification) {
+                if (qualification && positionDetails) {
                     positionDetails.textContent = qualification;
                     positionDetails.classList.remove('hidden');
-                } else {
+                } else if (positionDetails) {
                     positionDetails.classList.add('hidden');
                 }
             }
@@ -1231,7 +1268,10 @@ ${name}
             setupValidationListeners(); 
             triggerAllCounters();
             
-            // --- *** BUG FIX: ADD DYNAMIC BUTTON LISTENERS *** ---
+            if (positionSelect) {
+                positionSelect.addEventListener('change', updatePositionDetails);
+            }
+            
             document.getElementById('add-language-btn').addEventListener('click', () => addLanguageField());
             document.getElementById('add-experience-btn').addEventListener('click', () => addExperienceField());
 
