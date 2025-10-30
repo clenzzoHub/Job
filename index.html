@@ -24,6 +24,11 @@
             @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-200;
         }
         
+        /* Smaller textarea for the questionnaire */
+        .form-textarea-small {
+            @apply w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-200;
+        }
+
         .btn {
             @apply inline-block w-full font-bold py-3 px-5 rounded-lg transition duration-200 ease-in-out text-center;
         }
@@ -146,30 +151,23 @@
                         <option value="Supervising Officer">Supervising Officer</option>
                         <option value="Detailer">Detailer</option>
                         <option value="Admin Executive">Admin Executive</option>
-                        <option value="Sales Manager">Sales Manager</option>
-                        <!-- *** NEW ROLE *** -->
+                        <option value="Sales Executive">Sales Executive</option>
                         <option value="Marketing Executive">Marketing Executive</option>
                     </select>
+                    <!-- Fresher-friendly qualifications -->
                     <div id="position-details" class="mt-3 p-3 bg-slate-900 rounded-lg text-slate-300 border border-slate-700 text-sm hidden">
-                        Please select a position to see qualifications.
+                        Please select a position to see qualities.
                     </div>
                 </div>
 
-                <!-- Step 4: Why Clenzzo (data-step="3") *** NEW STEP *** -->
+                <!-- Step 4: Why Clenzzo (data-step="3") -->
                 <div class="question-step hidden" data-step="3">
                     <label for="whyClenzzo" class="block text-xl font-bold mb-3">Why are you interested in working for Clenzzo?</label>
                     <textarea id="whyClenzzo" name="whyClenzzo" class="form-textarea" rows="4" placeholder="What motivates you about this role or our company?" required></textarea>
                 </div>
 
-                <!-- Step 5: Situational Question (data-step="4") *** NEW STEP *** -->
+                <!-- Step 5: Personal Details (data-step="4") -->
                 <div class="question-step hidden" data-step="4">
-                    <!-- This label will be set by JavaScript -->
-                    <label id="situational-label" for="situationalAnswer" class="block text-xl font-bold mb-3">Role-Specific Question</label>
-                    <textarea id="situationalAnswer" name="situationalAnswer" class="form-textarea" rows="4" placeholder="Your approach..." required></textarea>
-                </div>
-
-                <!-- Step 6: Personal Details (data-step="5") -->
-                <div class="question-step hidden" data-step="5">
                     <label class="block text-xl font-bold mb-3">Tell us about yourself.</label>
                     <select id="maritalStatus" name="maritalStatus" class="form-select mb-3" required>
                         <option value="" disabled selected>Marital Status...</option>
@@ -180,16 +178,16 @@
                     <textarea id="currentAddress" name="currentAddress" class="form-textarea" rows="3" placeholder="Current Address" required></textarea>
                 </div>
 
-                <!-- Step 7: Education (data-step="6") -->
-                <div class="question-step hidden" data-step="6">
+                <!-- Step 6: Education (data-step="5") -->
+                <div class="question-step hidden" data-step="5">
                     <label class="block text-xl font-bold mb-3">What is your highest qualification?</label>
                     <input type="text" id="qualification" name="qualification" class="form-input mb-3" placeholder="Qualification (e.g., B.Com, 12th Std)" required>
                     <input type="text" id="discipline" name="discipline" class="form-input mb-3" placeholder="Discipline (e.g., Commerce, Science) (Optional)">
                     <input type="text" id="educationPlace" name="educationPlace" class="form-input" placeholder="Place of Education (School/College)" required>
                 </div>
 
-                <!-- Step 8: Skills (data-step="7") -->
-                <div class="question-step hidden" data-step="7">
+                <!-- Step 7: Skills (data-step="6") -->
+                <div class="question-step hidden" data-step="6">
                     <label class="block text-xl font-bold mb-3">What are your driving/riding skills?</label>
                     <select id="skillMotorcycle" name="skillMotorcycle" class="form-select mb-3" required>
                         <option value="" disabled selected>Know how to ride a motorcycle?</option>
@@ -210,8 +208,8 @@
                     </select>
                 </div>
 
-                <!-- Step 9: Languages (data-step="8") -->
-                <div class="question-step hidden" data-step="8">
+                <!-- Step 8: Languages (data-step="7") -->
+                <div class="question-step hidden" data-step="7">
                     <label class="block text-xl font-bold mb-3">Which languages do you know?</label>
                     <div id="language-list" class="space-y-3">
                         <!-- Language items will be added here -->
@@ -219,8 +217,8 @@
                     <button type="button" id="add-language-btn" class="btn btn-secondary mt-3 text-sm py-2">Add Language</button>
                 </div>
 
-                <!-- Step 10: Declarations (data-step="9") -->
-                <div class="question-step hidden" data-step="9">
+                <!-- Step 9: Declarations (data-step="8") -->
+                <div class="question-step hidden" data-step="8">
                     <label class="block text-xl font-bold mb-3">Declarations</label>
                     <select id="criminalCase" name="criminalCase" class="form-select mb-3" required>
                         <option value="" disabled selected>Any criminal cases?</option>
@@ -232,7 +230,6 @@
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>
-                    <!-- *** NEW FIELD *** -->
                     <select id="howDidYouHear" name="howDidYouHear" class="form-select" required>
                         <option value="" disabled selected>How did you hear about us?</option>
                         <option value="Social Media (Instagram/Facebook)">Social Media (Instagram/Facebook)</option>
@@ -241,6 +238,38 @@
                         <option value="Clenzzo Website">Clenzzo Website</option>
                         <option value="Other">Other</option>
                     </select>
+                </div>
+
+                <!-- Step 10: Aptitude Questionnaire (data-step="9") -->
+                <div class="question-step hidden" data-step="9">
+                    <h2 id="questionnaire-title" class="block text-xl font-bold mb-4">Aptitude Questionnaire</h2>
+                    <div class="space-y-4">
+                        <!-- Q1 -->
+                        <div>
+                            <label id="situational-label-1" for="situationalAnswer1" class="block text-sm font-medium mb-1">Question 1</label>
+                            <textarea id="situationalAnswer1" name="situationalAnswer1" class="form-textarea-small" rows="2" placeholder="Your answer..." required></textarea>
+                        </div>
+                        <!-- Q2 -->
+                        <div>
+                            <label id="situational-label-2" for="situationalAnswer2" class="block text-sm font-medium mb-1">Question 2</label>
+                            <textarea id="situationalAnswer2" name="situationalAnswer2" class="form-textarea-small" rows="2" placeholder="Your answer..." required></textarea>
+                        </div>
+                        <!-- Q3 -->
+                        <div>
+                            <label id="situational-label-3" for="situationalAnswer3" class="block text-sm font-medium mb-1">Question 3</label>
+                            <textarea id="situationalAnswer3" name="situationalAnswer3" class="form-textarea-small" rows="2" placeholder="Your answer..." required></textarea>
+                        </div>
+                        <!-- Q4 -->
+                        <div>
+                            <label id="situational-label-4" for="situationalAnswer4" class="block text-sm font-medium mb-1">Question 4</label>
+                            <textarea id="situationalAnswer4" name="situationalAnswer4" class="form-textarea-small" rows="2" placeholder="Your answer..." required></textarea>
+                        </div>
+                        <!-- Q5 -->
+                        <div>
+                            <label id="situational-label-5" for="situationalAnswer5" class="block text-sm font-medium mb-1">Question 5</label>
+                            <textarea id="situationalAnswer5" name="situationalAnswer5" class="form-textarea-small" rows="2" placeholder="Your answer..." required></textarea>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Step 11: Reference (data-step="10") -->
@@ -332,20 +361,56 @@
             
             // --- NEW DATA MAPS ---
             const positionQualifications = {
-                "Supervising Officer": "Requires 2+ years of team lead experience and a valid 2/4-wheeler license.",
-                "Detailer": "Requires physical fitness, attention to detail, and a 2-wheeler license.",
-                "Admin Executive": "Requires good communication skills, Tally/Excel knowledge, and 1+ year experience.",
-                "Sales Manager": "Requires 3+ years in B2B/B2C sales, strong communication, and a target-driven mindset.",
-                "Marketing Executive": "Requires creativity, data-driven thinking, and skill in social media management. BBA/MBA preferred."
+                "Supervising Officer": "Seeking natural leaders. Freshers with strong team leadership skills (e.g., college, sports) are welcome.",
+                "Detailer": "We need meticulous, hands-on individuals with high attention to detail. Full training provided – freshers welcome.",
+                "Admin Executive": "Seeking organized, reliable individuals. Familiarity with basic computer skills (Excel, Email) is a plus. Freshers welcome.",
+                "Sales Executive": "Seeking confident, persuasive communicators with a target-driven mindset. Freshers welcome.",
+                "Marketing Executive": "Seeking creative, tech-savvy individuals passionate about social media and building a brand. Freshers welcome."
             };
-            
-            const situationalQuestions = {
-                "Supervising Officer": "A customer is unhappy, saying you missed a spot. What is your first action?",
-                "Detailer": "You are running 10 minutes late for your first 5am client. What do you do?",
-                "Sales Manager": "A potential client says, 'Your price is too high.' What is your first response?",
-                "Admin Executive": "You have 3 urgent emails and 2 reports to file, all due by 3 PM. How do you prioritize?",
-                "Marketing Executive": "You have a 1000 rupee budget to promote Clenzzo in a new neighborhood. What's your first idea?",
-                "default": "Tell us about a time you solved a difficult problem at work or school."
+
+            const situationalQuestionSets = {
+                "Detailer": [
+                    "A customer claims you missed a spot. You checked, and you don't think you did. How do you handle this?",
+                    "It's 5:30 AM, and you feel unwell. Your first job is at 6:00 AM. What are your exact steps?",
+                    "You are running 10 minutes late for a job. What do you do?",
+                    "How would you rank these in order of importance for this job: Speed, Quality, Friendliness.",
+                    "What's one quality a great detailer must have?"
+                ],
+                "Supervising Officer": [
+                    "A customer is unhappy with a detailer's work. What is your first action?",
+                    "A detailer on your team is consistently 10 minutes late. How do you handle it?",
+                    "You accidentally splash a little cleaning solution on a client's leather seat. What is your *immediate* next action?",
+                    "How do you motivate a team member who seems tired or unmotivated?",
+                    "What's the most important quality a team leader must have?"
+                ],
+                "Admin Executive": [
+                    "You have two urgent reports due and a team member is asking for help. How do you prioritize?",
+                    "You find a mistake in a financial report *after* you've already sent it to your manager. What do you do?",
+                    "A customer calls with an angry complaint, and your manager is not available. What do you do?",
+                    "What's a simple trick you use to keep your work organized (e.g., a to-do list, a calendar)?",
+                    "How comfortable are you with learning new software or apps on a scale of 1 (Not) to 5 (Very)?"
+                ],
+                "Sales Executive": [
+                    "A client says, 'Your price is way too high.' What is your first sentence in response?",
+                    "You've had no new leads for 3 days. What's the first thing you do to change that?",
+                    "How do you handle hearing 'No' 10 times in a row?",
+                    "A client is almost ready to sign but wants a discount you are not allowed to give. How do you save the deal?",
+                    "What's more important for long-term sales: A clever pitch or building trust?"
+                ],
+                "Marketing Executive": [
+                    "You have a ₹1000 budget to get 5 new customers in a single neighborhood. What's your idea?",
+                    "A negative comment is posted on one of our social media ads. What do you do?",
+                    "How would you describe 'waterless car cleaning' in one sentence for an Instagram ad?",
+                    "What's a brand (any brand) that you think does marketing well, and why?",
+                    "Our website traffic is down 20%. Where would you *start* looking for the problem?"
+                ],
+                "default": [
+                    "Tell us about a time you solved a difficult problem at work or school.",
+                    "What's a quality you have that makes you a great team member?",
+                    "How do you handle a situation where you have too many tasks and not enough time?",
+                    "What is your definition of 'good customer service'?",
+                    "Why do you think you are a good fit for a startup environment?"
+                ]
             };
             
             // --- NAVIGATION ---
@@ -357,7 +422,6 @@
                 document.getElementById('app-container').scrollIntoView();
             }
 
-            // Attached to window for inline 'onclick'
             window.jumpToStep = function(stepIndex) {
                 currentStep = stepIndex;
                 navigateTo('form');
@@ -366,13 +430,20 @@
 
             // --- FORM LOGIC ---
             function showStep(stepIndex) {
-                // *** NEW: Dynamic question logic ***
-                if (stepIndex === 4) { // Situational Question step
+                // Dynamic 5-Question Logic
+                if (stepIndex === 9) { // Aptitude Questionnaire step (data-step="9")
                     const position = document.getElementById('position').value;
-                    const question = situationalQuestions[position] || situationalQuestions["default"];
-                    document.getElementById('situational-label').textContent = question;
-                    // Also pass question to formData for email
-                    formData.situationalQuestion = question;
+                    const questionSet = situationalQuestionSets[position] || situationalQuestionSets["default"];
+                    
+                    document.getElementById('questionnaire-title').textContent = `Aptitude Questionnaire for: ${position}`;
+                    
+                    document.getElementById('situational-label-1').textContent = questionSet[0];
+                    document.getElementById('situational-label-2').textContent = questionSet[1];
+                    document.getElementById('situational-label-3').textContent = questionSet[2];
+                    document.getElementById('situational-label-4').textContent = questionSet[3];
+                    document.getElementById('situational-label-5').textContent = questionSet[4];
+                    
+                    formData.questionSet = questionSet;
                 }
 
                 formSteps.forEach((step, index) => {
@@ -398,8 +469,8 @@
                     }
                 });
 
-                // data-step="8" is Language step
-                if (currentStepElement.dataset.step === "8") { 
+                // data-step="7" is Language step
+                if (currentStepElement.dataset.step === "7") { 
                     const langList = document.getElementById('language-list');
                     const addLangBtn = document.getElementById('add-language-btn');
                     if (langList.children.length === 0) {
@@ -452,9 +523,13 @@
                 // Role & Fit
                 formData.position = getValue('position');
                 formData.whyClenzzo = getValue('whyClenzzo');
-                formData.situationalAnswer = getValue('situationalAnswer');
-                // formData.situationalQuestion is already set in showStep()
-                
+                // formData.questionSet is already set in showStep()
+                formData.situationalAnswer1 = getValue('situationalAnswer1');
+                formData.situationalAnswer2 = getValue('situationalAnswer2');
+                formData.situationalAnswer3 = getValue('situationalAnswer3');
+                formData.situationalAnswer4 = getValue('situationalAnswer4');
+                formData.situationalAnswer5 = getValue('situationalAnswer5');
+
                 // Education
                 formData.qualification = getValue('qualification');
                 formData.discipline = getValue('discipline');
@@ -465,8 +540,7 @@
                 formData.skillCar = getValue('skillCar');
                 formData.skillLicense = getValue('skillLicense');
                 formData.languages = [];
-                const langItems = document.querySelectorAll('.language-item');
-                langItems.forEach((item, index) => {
+                document.querySelectorAll('.language-item').forEach((item, index) => {
                     const name = item.querySelector(`[data-lang-name="${index}"]`).value.trim();
                     if (name) {
                         formData.languages.push({
@@ -503,12 +577,18 @@
                     <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>`).join('');
                 const optional = (val) => val ? val.replace(/\n/g, '<br>') : '<span class="text-slate-500">N/A</span>';
 
-                // New jumpToStep indices:
-                // 0: Personal (Name, Contact, Address, etc.)
-                // 2: Position (Position, Why, Situational)
-                // 6: Education
-                // 7: Skills (Skills, Lang)
-                // 9: Decls (Decls, How, Ref)
+                // New jumpToStep indices: (data-step values)
+                // 0: Full Name
+                // 1: Contact
+                // 2: Position
+                // 3: Why Clenzzo
+                // 4: Personal Details
+                // 5: Education
+                // 6: Skills 
+                // 7: Languages
+                // 8: Declarations
+                // 9: Aptitude
+                // 10: Reference
                 // 11: Notes
 
                 reviewContent.innerHTML = `
@@ -525,22 +605,33 @@
                         <p><strong>Address:</strong><br><span class="pl-2">${formData.currentAddress.replace(/\n/g, '<br>')}</span></p>
                     </div>
                     
-                    <!-- *** NEW REVIEW SECTION *** -->
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-teal-400">Position & Role Fit</h3>
+                            <h3 class="text-xl font-bold text-teal-400">Position & Motivation</h3>
                             <button onclick="jumpToStep(2)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Applying for:</strong> ${formData.position}</p>
                         <p><strong>Why Clenzzo:</strong><br><span class="pl-2">${optional(formData.whyClenzzo)}</span></p>
-                        <p class="mt-2"><strong>Role Question:</strong><br><span class="pl-2">${formData.situationalQuestion}</span></p>
-                        <p><strong>Your Answer:</strong><br><span class="pl-2">${optional(formData.situationalAnswer)}</span></p>
+                    </div>
+                    
+                    <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-teal-400">Aptitude Questionnaire</h3>
+                            <button onclick="jumpToStep(9)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <p><strong>Q1:</strong> ${formData.questionSet[0]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer1)}</span></p>
+                            <p><strong>Q2:</strong> ${formData.questionSet[1]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer2)}</span></p>
+                            <p><strong>Q3:</strong> ${formData.questionSet[2]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer3)}</span></p>
+                            <p><strong>Q4:</strong> ${formData.questionSet[3]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer4)}</span></p>
+                            <p><strong>Q5:</strong> ${formData.questionSet[4]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer5)}</span></p>
+                        </div>
                     </div>
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
                             <h3 class="text-xl font-bold text-teal-400">Education</h3>
-                            <button onclick="jumpToStep(6)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <button onclick="jumpToStep(5)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Qualification:</strong> ${formData.qualification}</p>
                         <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
@@ -550,7 +641,7 @@
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
                             <h3 class="text-xl font-bold text-teal-400">Skills & Languages</h3>
-                            <button onclick="jumpToStep(7)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <button onclick="jumpToStep(6)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
                         <p><strong>Drive Car:</strong> ${formData.skillCar}</p>
@@ -562,7 +653,7 @@
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
                             <h3 class="text-xl font-bold text-teal-400">Declarations & Reference</h3>
-                            <button onclick="jumpToStep(9)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
+                            <button onclick="jumpToStep(8)" class="text-sm text-teal-400 hover:text-teal-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
                         <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
                         <p><strong>Needs Residential Support:</strong> ${formData.residentialSupport}</p>
@@ -598,7 +689,6 @@
                     return `- ${lang.name} (${skills.join(', ')})`;
                 }).join('\n');
 
-                // *** NEW EMAIL BODY STRUCTURE ***
                 const body = `
 --- HIRING MANAGER QUICK VIEW ---
 Name: ${name}
@@ -610,13 +700,26 @@ Heard Via: ${formData.howDidYouHear}
 ---------------------------------
 
 --- ROLE FIT (KEY ANSWERS) ---
+
 Why Clenzzo:
 ${formData.whyClenzzo}
 
-Role Question:
-${formData.situationalQuestion}
-Your Answer:
-${formData.situationalAnswer}
+--- Aptitude Questionnaire (${position}) ---
+
+Q1: ${formData.questionSet[0]}
+A: ${formData.situationalAnswer1}
+
+Q2: ${formData.questionSet[1]}
+A: ${formData.situationalAnswer2}
+
+Q3: ${formData.questionSet[2]}
+A: ${formData.situationalAnswer3}
+
+Q4: ${formData.questionSet[3]}
+A: ${formData.situationalAnswer4}
+
+Q5: ${formData.questionSet[4]}
+A: ${formData.situationalAnswer5}
 ---------------------------------
 
 Dear Clenzzo Hiring Team,
@@ -736,4 +839,5 @@ ${name}
     
 </body>
 </html>
+
 
