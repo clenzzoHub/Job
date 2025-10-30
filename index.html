@@ -20,13 +20,20 @@
             scroll-behavior: smooth;
         }
         
-        /* Brand Color (Blue) */
         .form-input, .form-select, .form-textarea {
             @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200;
         }
         
         .form-textarea-small {
             @apply w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200;
+        }
+
+        /* --- NEW VALIDATION STYLING --- */
+        .is-invalid {
+            @apply border-red-500 focus:ring-red-500;
+        }
+        .validation-message {
+            @apply text-red-400 text-xs mt-1 h-4; /* h-4 keeps layout stable */
         }
 
         .btn {
@@ -47,15 +54,12 @@
             @apply bg-slate-700 text-slate-400 cursor-not-allowed transform-none hover:scale-100;
         }
 
-        /* Question Step Animations */
         .question-step {
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            /* ** FIX ** Removed position:absolute and fragile width calc */
         }
         .fade-out {
             opacity: 0;
             transform: translateX(-20px);
-            /* ** FIX ** Use 'display: none' after animation */
         }
         .fade-in {
             opacity: 1;
@@ -66,31 +70,18 @@
             min-height: 250px; 
         }
 
-        /* Segment Card Styling */
         .segment-card {
             @apply bg-slate-900 p-4 rounded-lg border border-slate-700 flex items-center justify-between transition duration-300;
         }
-        .segment-card-todo {
-            @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer;
-        }
-        .segment-card-inprogress {
-            @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer;
-        }
-        .segment-card-complete {
-            @apply border-green-700 hover:bg-green-900/50 cursor-pointer;
-        }
-
-        /* Real-time validation message */
-        .validation-message {
-            @apply text-red-400 text-xs mt-1;
-        }
+        .segment-card-todo { @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer; }
+        .segment-card-inprogress { @apply hover:bg-slate-700 hover:border-blue-500 cursor-pointer; }
+        .segment-card-complete { @apply border-green-700 hover:bg-green-900/50 cursor-pointer; }
     </style>
 </head>
 
 <body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
 
     <!-- Main Application Container -->
-    <!-- ** FIX ** Added max-w-lg and mx-auto here to constrain all children -->
     <div id="app-container" class="w-full max-w-lg mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
 
         <!-- ===== Persistent Header (Hidden on Welcome) ===== -->
@@ -103,67 +94,25 @@
 
         <!-- ===== PAGE 1: WELCOME ===== -->
         <div id="page-welcome" class="p-6 md:p-8">
-            <div class="text-center mb-6">
-                <img src="https://lh3.googleusercontent.com/d/1mAxNMp4-N-4FpIi_BPZZfCCaK5RCxVUH" 
-                     alt="Clenzzo Logo" 
-                     class="h-16 w-auto mx-auto mb-4"
-                     onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')">
-                <span id="logo-fallback" class="text-4xl font-bold text-blue-400 hidden">CLENZZO</span>
-                <p class="text-sm text-slate-400">Premium Waterless Car Care</p>
-            </div>
-            
+            <!-- (Content identical to v7) -->
+            <div class="text-center mb-6"><img src="https://lh3.googleusercontent.com/d/1mAxNMp4-N-4FpIi_BPZZfCCaK5RCxVUH" alt="Clenzzo Logo" class="h-16 w-auto mx-auto mb-4" onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden')"><span id="logo-fallback" class="text-4xl font-bold text-blue-400 hidden">CLENZZO</span><p class="text-sm text-slate-400">Premium Waterless Car Care</p></div>
             <h1 class="text-2xl font-bold text-white mb-4 text-center">Join the Clenzzo Revolution</h1>
-            <p class="text-slate-300 mb-6">
-                We're looking for partners, not just employees, to help us become India’s #1 cleaning partner.
-            </p>
-
-            <div class="p-4 bg-slate-900 rounded-lg border border-slate-700 mb-6">
-                <h3 class="font-bold text-white text-lg mb-2">Know Us First!</h3>
-                <p class="text-slate-300 text-sm mb-3">
-                    Before you apply, please visit our website to understand our mission and services.
-                </p>
-                <a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" 
-                   class="inline-block w-full text-center bg-slate-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition duration-200">
-                    Visit clenzzo.com
-                </a>
-            </div>
-            
+            <p class="text-slate-300 mb-6">We're looking for partners, not just employees, to help us become India’s #1 cleaning partner.</p>
+            <div class="p-4 bg-slate-900 rounded-lg border border-slate-700 mb-6"><h3 class="font-bold text-white text-lg mb-2">Know Us First!</h3><p class="text-slate-300 text-sm mb-3">Before you apply, please visit our website to understand our mission and services.</p><a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" class="inline-block w-full text-center bg-slate-700 text-white font-bold py-2 px-4 rounded-lg hover:bg-slate-600 transition duration-200">Visit clenzzo.com</a></div>
             <h2 class="text-xl font-bold text-white mb-4">Who We're Looking For</h2>
-            <div class="flex flex-wrap gap-2 mb-6">
-                <span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Ambitious & Driven</span>
-                <span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Customer-Obsessed</span>
-                <span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Punctual & Reliable</span>
-                <span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">A Team Player</span>
-            </div>
-
+            <div class="flex flex-wrap gap-2 mb-6"><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Ambitious & Driven</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Customer-Obsessed</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">Punctual & Reliable</span><span class="bg-blue-800 text-blue-100 py-1 px-3 rounded-full text-sm font-medium">A Team Player</span></div>
             <h2 class="text-xl font-bold text-white mb-4">What We Offer</h2>
-            <div class="space-y-3 text-slate-300 mb-8">
-                <!-- Icons from v6 -->
-                <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg><span>Employee Development Programs</span></div>
-                <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg><span>Quarterly Promotions & Appraisals</span></div>
-                <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span>Competitive Salary & Incentives</span></div>
-                <div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.084-1.284-.24-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.084-1.284.24-1.857m11.52 0l-1.52-1.52a3 3 0 00-4.24 0l-1.52 1.52m3-3l-4.5-4.5-4.5 4.5m1.5-1.5l.75.75M3 18v-2a3 3 0 013-3h12a3 3 0 013 3v2" /></svg><span>A Supportive & Driven Team</span></div>
-            </div>
-            
+            <div class="space-y-3 text-slate-300 mb-8"><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg><span>Employee Development Programs</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg><span>Quarterly Promotions & Appraisals</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span>Competitive Salary & Incentives</span></div><div class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.084-1.284-.24-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.084-1.284.24-1.857m11.52 0l-1.52-1.52a3 3 0 00-4.24 0l-1.52 1.52m3-3l-4.5-4.5-4.5 4.5m1.5-1.5l.75.75M3 18v-2a3 3 0 013-3h12a3 3 0 013 3v2" /></svg><span>A Supportive & Driven Team</span></div></div>
             <button id="start-btn" class="btn btn-primary">Start Application</button>
         </div>
 
         <!-- ===== PAGE 2: DISCLAIMER ===== -->
         <div id="page-disclaimer" class="p-6 md:p-8 hidden">
+            <!-- (Content identical to v7) -->
             <h1 class="text-3xl font-bold text-white mb-4">Our Mutual Commitment</h1>
             <p class="text-slate-400 mb-6">We believe in transparency. Here's what we agree on:</p>
-            
-            <div class="space-y-4 text-slate-300">
-                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">📅</span><div><h3 class="font-bold text-white">3-Month Probation</h3><p class="text-sm text-slate-400">A 90-day period at 60% salary for us to ensure we're a perfect fit.</p></div></div>
-                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">🤝</span><div><h3 class="font-bold text-white">1-Year Commitment</h3><p class="text-sm text-slate-400">We invest a lot in your training and ask for a 1-year commitment in return.</p></div></div>
-                <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">⏰</span><div><h3 class="font-bold text-white">Working Hours</h3><p class="text-sm text-slate-400">5am-6pm (Operations) or 9am-6pm (Admin/Marketing), as per your role.</p></div></div>
-            </div>
-            
-            <div class="mt-6 flex items-center">
-                <input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-blue-500 focus:ring-blue-500 rounded">
-                <label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to these terms.</label>
-            </div>
-            
+            <div class="space-y-4 text-slate-300"><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">📅</span><div><h3 class="font-bold text-white">3-Month Probation</h3><p class="text-sm text-slate-400">A 90-day period at 60% salary for us to ensure we're a perfect fit.</p></div></div><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">🤝</span><div><h3 class="font-bold text-white">1-Year Commitment</h3><p class="text-sm text-slate-400">We invest a lot in your training and ask for a 1-year commitment in return.</p></div></div><div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border border-slate-700"><span class="text-2xl mt-1">⏰</span><div><h3 class="font-bold text-white">Working Hours</h3><p class="text-sm text-slate-400">5am-6pm (Operations) or 9am-6pm (Admin/Marketing), as per your role.</p></div></div></div>
+            <div class="mt-6 flex items-center"><input type="checkbox" id="agree-checkbox" class="h-5 w-5 bg-slate-700 border-slate-600 text-blue-500 focus:ring-blue-500 rounded"><label for="agree-checkbox" class="ml-3 text-slate-300">I have read and agree to these terms.</label></div>
             <button id="disclaimer-continue-btn" class="btn btn-disabled mt-6" disabled>I Agree & Continue</button>
         </div>
 
@@ -175,7 +124,8 @@
             <div id="name-capture-form">
                 <label for="fullName" class="block text-xl font-bold mb-3">Full Name</label>
                 <input type="text" id="fullName" name="fullName" class="form-input" placeholder="e.g., Ramesh Kumar" required>
-                <div id="fullName-error" class="validation-message hidden">Please enter your name.</div>
+                <!-- ** NEW: Validation Message ** -->
+                <div id="fullName-error" class="validation-message"></div>
             </div>
             
             <button id="name-continue-btn" class="btn btn-primary mt-6">Continue</button>
@@ -183,77 +133,55 @@
 
         <!-- ===== PAGE 4: SEGMENT HUB (NEW) ===== -->
         <div id="page-segment-hub" class="p-6 md:p-8 hidden">
+            <!-- (Content identical to v7) -->
             <h1 id="hub-greeting" class="text-3xl font-bold text-white mb-2">Welcome!</h1>
             <p class="text-slate-400 mb-6">Let's get your details. Please complete all segments.</p>
-
-            <!-- Overall Progress -->
-            <div class="mb-6">
-                <div class="flex justify-between items-center text-sm text-slate-300 mb-1">
-                    <span>Overall Progress</span>
-                    <span id="overall-progress-text">0/6 Segments</span>
-                </div>
-                <div class="w-full bg-slate-700 rounded-full h-2.5">
-                    <div id="overall-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
-                </div>
-            </div>
-
-            <!-- Segment List -->
-            <div id="segment-list" class="space-y-3">
-                <!-- Segments will be dynamically injected here by JS -->
-            </div>
-
+            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span>Overall Progress</span><span id="overall-progress-text">0/6 Segments</span></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
+            <div id="segment-list" class="space-y-3"></div>
             <button id="hub-submit-btn" class="btn btn-disabled mt-8" disabled>Proceed to Final Review</button>
         </div>
 
         <!-- ===== PAGE 5: QUESTION FLOW (NEW) ===== -->
         <div id="page-question-flow" class="p-6 md:p-8 hidden">
             <h1 id="question-flow-title" class="text-2xl font-bold text-white mb-6">Editing Segment</h1>
-
-            <!-- Segment Progress -->
-            <div class="mb-6">
-                <div class="flex justify-between items-center text-sm text-slate-300 mb-1">
-                    <span id="segment-progress-label">Step 1 of X</span>
-                    <button id="question-flow-back-btn" class="text-sm text-blue-400 hover:text-blue-300">&larr; Back to Hub</button>
-                </div>
-                <div class="w-full bg-slate-700 rounded-full h-2.5">
-                    <div id="segment-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
-                </div>
-            </div>
-            
+            <div class="mb-6"><div class="flex justify-between items-center text-sm text-slate-300 mb-1"><span id="segment-progress-label">Step 1 of X</span><button id="question-flow-back-btn" class="text-sm text-blue-400 hover:text-blue-300">&larr; Back to Hub</button></div><div class="w-full bg-slate-700 rounded-full h-2.5"><div id="segment-progress-bar" class="bg-blue-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div></div></div>
             <p id="personal-greeting" class="text-blue-300 mb-4 text-lg hidden"></p>
 
-            <!-- Wrapper for animations -->
             <div id="question-flow-wrapper">
                 <form id="application-form">
-                    <!-- All 30 question-steps from v6 go in here -->
-                    <!-- All inputs are pre-defined here for simplicity -->
                     
+                    <!-- ** ALL STEPS NOW HAVE VALIDATION MESSAGES ** -->
+
                     <!-- Segment 1: Basic Info -->
                     <div class="question-step" data-step="0" data-segment="basicInfo">
                         <label for="fullName-q" class="block text-xl font-bold mb-3">Confirm your full name:</label>
-                        <input type="text" id="fullName-q" name="fullName" class="form-input" placeholder="e.g., Ramesh Kumar" required>
+                        <input type="text" id="fullName-q" name="fullName-q" class="form-input" placeholder="e.g., Ramesh Kumar" required>
+                        <div id="fullName-q-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="1" data-segment="basicInfo">
                         <label for="email" class="block text-xl font-bold mb-3">What's your email address?</label>
                         <input type="email" id="email" name="email" class="form-input" placeholder="Email Address" required>
-                        <div id="email-error" class="validation-message hidden">Please enter a valid email address.</div>
+                        <div id="email-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="2" data-segment="basicInfo">
                         <label for="phone" class="block text-xl font-bold mb-3">And your 10-digit phone number?</label>
                         <input type="tel" id="phone" name="phone" class="form-input" placeholder="10-Digit Phone Number" required>
-                        <div id="phone-error" class="validation-message hidden">Please enter a valid 10-digit phone number.</div>
+                        <div id="phone-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="3" data-segment="basicInfo">
                         <label for="maritalStatus" class="block text-xl font-bold mb-3">What's your marital status?</label>
                         <select id="maritalStatus" name="maritalStatus" class="form-select" required><option value="" disabled selected>Select...</option><option value="Single">Single</option><option value="Married">Married</option></select>
+                        <div id="maritalStatus-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="4" data-segment="basicInfo">
                         <label for="placeOfBirth" class="block text-xl font-bold mb-3">Where were you born?</label>
                         <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-input" placeholder="Place of Birth" required>
+                        <div id="placeOfBirth-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="5" data-segment="basicInfo">
                         <label for="currentAddress" class="block text-xl font-bold mb-3">What's your current address?</label>
                         <textarea id="currentAddress" name="currentAddress" class="form-textarea" rows="3" placeholder="Current Address" required></textarea>
+                        <div id="currentAddress-error" class="validation-message"></div>
                     </div>
 
                     <!-- Segment 2: Role & Motivation -->
@@ -263,6 +191,7 @@
                             <option value="" disabled selected>Select a position...</option>
                             <option value="Supervising Officer">Supervising Officer</option><option value="Detailer">Detailer</option><option value="Admin Executive">Admin Executive</option><option value="Sales Executive">Sales Executive</option><option value="Marketing Executive">Marketing Executive</option>
                         </select>
+                        <div id="position-error" class="validation-message"></div>
                         <div id="position-details" class="mt-3 p-3 bg-slate-900 rounded-lg text-slate-300 border border-slate-700 text-sm hidden">Please select a position to see qualities.</div>
                     </div>
                     <div class="question-step hidden" data-step="7" data-segment="roleMotivation">
@@ -271,10 +200,12 @@
                             <option value="" disabled selected>Select a range (in-hand)...</option>
                             <option value="8,000 - 15,000">₹8,000 - ₹15,000</option><option value="15,000 - 20,000">₹15,000 - ₹20,000</option><option value="20,000 - 25,000">₹20,000 - ₹25,000</option><option value="25,000 - 30,000">₹25,000 - ₹30,000</option><option value="30,000+">₹30,000+</option>
                         </select>
+                        <div id="salary-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="8" data-segment="roleMotivation">
                         <label for="whyClenzzo" class="block text-xl font-bold mb-3">Why are you interested in working for Clenzzo?</label>
                         <textarea id="whyClenzzo" name="whyClenzzo" class="form-textarea" rows="4" placeholder="What motivates you about this role or our company?" required maxlength="300"></textarea>
+                        <div id="whyClenzzo-error" class="validation-message"></div>
                         <div id="whyClenzzo-counter" class="text-xs text-slate-400 text-right mt-1">0 / 300</div>
                     </div>
 
@@ -282,18 +213,22 @@
                     <div class="question-step hidden" data-step="9" data-segment="eduExperience">
                         <label for="qualification" class="block text-xl font-bold mb-3">What's your highest qualification?</label>
                         <input type="text" id="qualification" name="qualification" class="form-input" placeholder="e.g., B.Com, 12th Std" required>
+                        <div id="qualification-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="10" data-segment="eduExperience">
                         <label for="discipline" class="block text-xl font-bold mb-3">What was your discipline/subject?</label>
                         <input type="text" id="discipline" name="discipline" class="form-input" placeholder="e.g., Commerce, Science (Optional)">
+                        <div id="discipline-error" class="validation-message"></div> <!-- Optional, so no error -->
                     </div>
                     <div class="question-step hidden" data-step="11" data-segment="eduExperience">
                         <label for="educationPlace" class="block text-xl font-bold mb-3">What's the name of your school/college?</label>
                         <input type="text" id="educationPlace" name="educationPlace" class="form-input" placeholder="Place of Education" required>
+                        <div id="educationPlace-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="12" data-segment="eduExperience">
                         <label for="hasExperience" class="block text-xl font-bold mb-3">Do you have any work experience?</label>
                         <select id="hasExperience" name="hasExperience" class="form-select" required><option value="No" selected>No (I am a fresher)</option><option value="Yes">Yes</option></select>
+                        <div id="hasExperience-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="13" data-segment="eduExperience">
                         <label class="block text-xl font-bold mb-3">Great, please add your experience.</label>
@@ -305,17 +240,20 @@
                     <div class="question-step hidden" data-step="14" data-segment="skillsLanguages">
                         <label for="skillMotorcycle" class="block text-xl font-bold mb-3">Can you ride a motorcycle?</label>
                         <select id="skillMotorcycle" name="skillMotorcycle" class="form-select" required><option value="" disabled selected>Select...</option><option value="Yes">Yes</option><option value="No">No</option></select>
+                        <div id="skillMotorcycle-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="15" data-segment="skillsLanguages">
                         <label for="skillCar" class="block text-xl font-bold mb-3">Do you know how to drive a car?</label>
                         <select id="skillCar" name="skillCar" class="form-select" required><option value="" disabled selected>Select...</option><option value="Yes">Yes</option><option value="No">No</option></select>
+                        <div id="skillCar-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="16" data-segment="skillsLanguages">
                         <label for="skillLicense" class="block text-xl font-bold mb-3">Do you have a valid license?</label>
                         <select id="skillLicense" name="skillLicense" class="form-select" required><option value="" disabled selected>Select...</option><option value="Yes - 2 Wheeler">Yes - 2 Wheeler</option><option value="Yes - 4 Wheeler">Yes - 4 Wheeler</option><option value="Yes - Both">Yes - Both</option><option value="No">No</option></select>
+                        <div id="skillLicense-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="17" data-segment="skillsLanguages">
-                        <label class="block text-xl font-bold mb-3">Which languages do you know?</label>
+                        <label class="block text-xl font-bold mb-3">Which languages do you know? (Optional)</label>
                         <div id="language-list" class="space-y-3"></div>
                         <button type="button" id="add-language-btn" class="btn btn-secondary mt-3 text-sm py-2">Add Language</button>
                     </div>
@@ -325,30 +263,35 @@
                         <h2 class="text-xl font-bold mb-1">Aptitude Questionnaire (1/5)</h2>
                         <label id="situational-label-1" for="situationalAnswer1" class="block text-lg font-medium mb-3">Question 1</label>
                         <textarea id="situationalAnswer1" name="situationalAnswer1" class="form-textarea-small" rows="3" placeholder="Your answer..." required maxlength="250"></textarea>
+                        <div id="situationalAnswer1-error" class="validation-message"></div>
                         <div id="situationalAnswer1-counter" class="text-xs text-slate-400 text-right mt-1">0 / 250</div>
                     </div>
                     <div class="question-step hidden" data-step="19" data-segment="questionnaire">
                         <h2 class="text-xl font-bold mb-1">Aptitude Questionnaire (2/5)</h2>
                         <label id="situational-label-2" for="situationalAnswer2" class="block text-lg font-medium mb-3">Question 2</label>
                         <textarea id="situationalAnswer2" name="situationalAnswer2" class="form-textarea-small" rows="3" placeholder="Your answer..." required maxlength="250"></textarea>
+                        <div id="situationalAnswer2-error" class="validation-message"></div>
                         <div id="situationalAnswer2-counter" class="text-xs text-slate-400 text-right mt-1">0 / 250</div>
                     </div>
                     <div class="question-step hidden" data-step="20" data-segment="questionnaire">
                         <h2 class="text-xl font-bold mb-1">Aptitude Questionnaire (3/5)</h2>
                         <label id="situational-label-3" for="situationalAnswer3" class="block text-lg font-medium mb-3">Question 3</label>
                         <textarea id="situationalAnswer3" name="situationalAnswer3" class="form-textarea-small" rows="3" placeholder="Your answer..." required maxlength="250"></textarea>
+                        <div id="situationalAnswer3-error" class="validation-message"></div>
                         <div id="situationalAnswer3-counter" class="text-xs text-slate-400 text-right mt-1">0 / 250</div>
                     </div>
                     <div class="question-step hidden" data-step="21" data-segment="questionnaire">
                         <h2 class="text-xl font-bold mb-1">Aptitude Questionnaire (4/5)</h2>
                         <label id="situational-label-4" for="situationalAnswer4" class="block text-lg font-medium mb-3">Question 4</label>
                         <textarea id="situationalAnswer4" name="situationalAnswer4" class="form-textarea-small" rows="3" placeholder="Your answer..." required maxlength="250"></textarea>
+                        <div id="situationalAnswer4-error" class="validation-message"></div>
                         <div id="situationalAnswer4-counter" class="text-xs text-slate-400 text-right mt-1">0 / 250</div>
                     </div>
                     <div class="question-step hidden" data-step="22" data-segment="questionnaire">
                         <h2 class="text-xl font-bold mb-1">Aptitude Questionnaire (5/5)</h2>
                         <label id="situational-label-5" for="situationalAnswer5" class="block text-lg font-medium mb-3">Question 5</label>
                         <textarea id="situationalAnswer5" name="situationalAnswer5" class="form-textarea-small" rows="3" placeholder="Your answer..." required maxlength="250"></textarea>
+                        <div id="situationalAnswer5-error" class="validation-message"></div>
                         <div id="situationalAnswer5-counter" class="text-xs text-slate-400 text-right mt-1">0 / 250</div>
                     </div>
 
@@ -356,30 +299,37 @@
                     <div class="question-step hidden" data-step="23" data-segment="declarations">
                         <label for="criminalCase" class="block text-xl font-bold mb-3">Do you have any criminal cases?</label>
                         <select id="criminalCase" name="criminalCase" class="form-select" required><option value="" disabled selected>Select...</option><option value="No">No</option><option value="Yes">Yes</option></select>
+                        <div id="criminalCase-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="24" data-segment="declarations">
                         <label for="residentialSupport" class="block text-xl font-bold mb-3">Will you need residential support?</label>
                         <select id="residentialSupport" name="residentialSupport" class="form-select" required><option value="" disabled selected>Select...</option><option value="No">No</option><option value="Yes">Yes</option></select>
+                        <div id="residentialSupport-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="25" data-segment="declarations">
                         <label for="availability" class="block text-xl font-bold mb-3">How soon can you join, if selected?</label>
                         <select id="availability" name="availability" class="form-select" required><option value="" disabled selected>Select...</option><option value="Immediately">Immediately</option><option value="Within 15 Days">Within 15 Days</option><option value="Within 30 Days">Within 30 Days</option><option value="More than 30 Days">More than 30 Days</option></select>
+                        <div id="availability-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="26" data-segment="declarations">
                         <label for="howDidYouHear" class="block text-xl font-bold mb-3">How did you hear about us?</label>
                         <select id="howDidYouHear" name="howDidYouHear" class="form-select" required><option value="" disabled selected>Select...</option><option value="Social Media (Instagram/Facebook)">Social Media (Instagram/Facebook)</option><option value="Job Portal (e.g., Naukri, Indeed)">Job Portal (e.g., Naukri, Indeed)</option><option value="Friend or Family">Friend or Family</option><option value="Clenzzo Website">Clenzzo Website</option><option value="Other">Other</option></select>
+                        <div id="howDidYouHear-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="27" data-segment="declarations">
                         <label for="referenceName" class="block text-xl font-bold mb-3">Please provide one reference.</label>
                         <input type="text" id="referenceName" name="referenceName" class="form-input" placeholder="Reference Person's Name" required>
+                        <div id="referenceName-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="28" data-segment="declarations">
                         <label for="referenceContact" class="block text-xl font-bold mb-3">What's your reference's contact number?</label>
                         <input type="tel" id="referenceContact" name="referenceContact" class="form-input" placeholder="Reference Person's Contact Number" required>
+                        <div id="referenceContact-error" class="validation-message"></div>
                     </div>
                     <div class="question-step hidden" data-step="29" data-segment="declarations">
-                        <label for="anythingElse" class="block text-xl font-bold mb-3">Anything else to add?</label>
+                        <label for="anythingElse" class="block text-xl font-bold mb-3">Anything else to add? (Optional)</label>
                         <textarea id="anythingElse" name="anythingElse" class="form-textarea" rows="4" placeholder="Optional: Tell us more..."></textarea>
+                        <div id="anythingElse-error" class="validation-message"></div>
                     </div>
                 </form>
             </div> <!-- End question-flow-wrapper -->
@@ -393,38 +343,24 @@
         
         <!-- ===== PAGE 6: REVIEW ===== -->
         <div id="page-review" class="p-6 md:p-8 hidden">
+            <!-- (Content identical to v7) -->
             <h1 class="text-3xl font-bold text-white mb-6">Review Your Application</h1>
             <p class="text-slate-400 mb-6">One last look. If you need to make changes, click the 'Edit' button for that section.</p>
-            <div id="review-content" class="space-y-6 text-slate-300">
-                <!-- Review data will be injected here by JS -->
-            </div>
-            
-            <div class="mt-8 flex gap-4">
-                <button id="review-back-btn" class="btn btn-secondary w-1/2">Back to Hub</button>
-                <a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Looks Good, Submit!</a>
-            </div>
+            <div id="review-content" class="space-y-6 text-slate-300"></div>
+            <div class="mt-8 flex gap-4"><button id="review-back-btn" class="btn btn-secondary w-1/2">Back to Hub</button><a id="submit-link-btn" href="#" class="btn btn-primary w-1/2">Looks Good, Submit!</a></div>
         </div>
 
         <!-- ===== PAGE 7: SUCCESS ===== -->
         <div id="page-success" class="p-6 md:p-8 hidden">
-            <div class="text-center">
-                <svg class="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                
-                <h1 id="success-greeting" class="text-3xl font-bold text-white mb-3">Success!</h1>
-                <p class="text-slate-300 mb-6 text-lg">Your email client should be open.</p>
-                <p class="text-blue-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-blue-800">
-                    Please review your application email and click 'Send' to submit it.
-                </p>
-                <p class="text-slate-400 mt-6">If your email client did not open, click the button below.</p>
-                
-                <a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a>
-
-                <div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left">
-                    <h3 class="font-bold text-white text-lg mb-2">What's Next?</h3>
-                    <p class="text-slate-300 text-sm">Our team will review your application. If your profile matches our needs, we will contact you within <strong>5 business days</strong> to schedule an interview.</p>
-                </div>
-            </div>
+            <!-- (Content identical to v7) -->
+            <div class="text-center"><svg class="w-16 h-16 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h1 id="success-greeting" class="text-3xl font-bold text-white mb-3">Success!</h1><p class="text-slate-300 mb-6 text-lg">Your email client should be open.</p><p class="text-blue-400 font-bold text-xl p-4 bg-slate-900 rounded-lg border border-blue-800">Please review your application email and click 'Send' to submit it.</p><p class="text-slate-400 mt-6">If your email client did not open, click the button below.</p><a id="resend-link-btn" href="#" class="btn btn-secondary mt-4 w-full md:w-auto md:px-8">Re-open Email Client</a><div class="mt-8 p-4 bg-slate-900 rounded-lg border border-slate-700 text-left"><h3 class="font-bold text-white text-lg mb-2">What's Next?</h3><p class="text-slate-300 text-sm">Our team will review your application. If your profile matches our needs, we will contact you within <strong>5 business days</strong> to schedule an interview.</p></div></div>
         </div>
+
+        <!-- ===== NEW: BRANDING FOOTER ===== -->
+        <footer class="p-4 text-center text-xs text-slate-500 border-t border-slate-700">
+            © <span id="current-year"></span> Clenzzo. All rights reserved.
+            <a href="https://clenzzo.com" target="_blank" rel="noopener noreferrer" class="ml-2 hover:text-blue-400">clenzzo.com</a>
+        </footer>
     </div>
 
     <!-- ===== JAVASCRIPT ===== -->
@@ -497,14 +433,104 @@
             };
 
             const situationalQuestionSets = {
-                "Detailer": [ "A customer claims you missed a spot...", "It's 5:30 AM, and you feel unwell...", "You are running 10 minutes late...", "Rank: Speed, Quality, Friendliness.", "One quality a great detailer must have?" ],
-                "Supervising Officer": [ "A customer is unhappy with a detailer's work...", "A detailer is consistently late...", "You accidentally splash solution...", "How do you motivate a tired team?", "Most important quality of a leader?" ],
-                "Admin Executive": [ "Two urgent reports, and a team member needs help...", "You find a mistake in a sent report...", "An angry customer calls, manager is out...", "What's your organization trick?", "Rate your comfort with new software (1-5)." ],
-                "Sales Executive": [ "Client: 'Your price is too high.'...", "No new leads for 3 days...", "How do you handle 'No' 10 times?", "Client wants an unapproved discount...", "More important: Clever pitch or building trust?" ],
-                "Marketing Executive": [ "₹1000 budget, get 5 customers...", "A negative comment on an ad...", "Describe 'waterless cleaning' for Instagram...", "What brand has great marketing, and why?", "Website traffic is down 20%. Where to start?" ],
-                "default": [ "Tell us about a time you solved a difficult problem.", "What quality makes you a great team member?", "How do you handle too many tasks?", "What is 'good customer service'?", "Why are you a good fit for a startup?" ]
+                "Detailer": [ "A customer claims you missed a spot. You checked, and you don't think you did. How do you handle this?", "It's 5:30 AM, and you feel unwell. Your first job is at 6:00 AM. What are your exact steps?", "You are running 10 minutes late for a job. What do you do?", "How would you rank these in order of importance for this job: Speed, Quality, Friendliness.", "What's one quality a great detailer must have?" ],
+                "Supervising Officer": [ "A customer is unhappy with a detailer's work. What is your first action?", "A detailer on your team is consistently 10 minutes late. How do you handle it?", "You accidentally splash a little cleaning solution on a client's leather seat. What is your *immediate* next action?", "How do you motivate a team member who seems tired or unmotivated?", "What's the most important quality a team leader must have?" ],
+                "Admin Executive": [ "You have two urgent reports due and a team member is asking for help. How do you prioritize?", "You find a mistake in a financial report *after* you've already sent it to your manager. What do you do?", "A customer calls with an angry complaint, and your manager is not available. What do you do?", "What's a simple trick you use to keep your work organized (e.g., a to-do list, a calendar)?", "How comfortable are you with learning new software or apps on a scale of 1 (Not) to 5 (Very)?" ],
+                "Sales Executive": [ "A client says, 'Your price is way too high.' What is your first sentence in response?", "You've had no new leads for 3 days. What's the first thing you do to change that?", "How do you handle hearing 'No' 10 times in a row?", "A client is almost ready to sign but wants a discount you are not allowed to give. How do you save the deal?", "What's more important for long-term sales: A clever pitch or building trust?" ],
+                "Marketing Executive": [ "You have a ₹1000 budget to get 5 new customers in a single neighborhood. What's your idea?", "A negative comment is posted on one of our social media ads. What do you do?", "How would you describe 'waterless car cleaning' in one sentence for an Instagram ad?", "What's a brand (any brand) that you think does marketing well, and why?", "Our website traffic is down 20%. Where would you *start* looking for the problem?" ],
+                "default": [ "Tell us about a time you solved a difficult problem at work or school.", "What's a quality you have that makes you a great team member?", "How do you handle a situation where you have too many tasks and not enough time?", "What is your definition of 'good customer service'?", "Why do you think you are a good fit for a startup environment?" ]
             };
             
+            // --- *** NEW: VALIDATION RULES *** ---
+            const validationRules = {
+                'fullName': { required: true, textOnly: true, message: 'Please enter a valid name (text only).' },
+                'fullName-q': { required: true, textOnly: true, message: 'Please enter a valid name (text only).' },
+                'email': { required: true, email: true, message: 'Please enter a valid email address.' },
+                'phone': { required: true, phone: true, message: 'Please enter a valid 10-digit phone number.' },
+                'maritalStatus': { required: true, message: 'Please select an option.' },
+                'placeOfBirth': { required: true, textOnly: true, message: 'Please enter a valid place name.' },
+                'currentAddress': { required: true, message: 'This field is required.' },
+                'position': { required: true, message: 'Please select a position.' },
+                'salary': { required: true, message: 'Please select a salary range.' },
+                'whyClenzzo': { required: true, message: 'This field is required.' },
+                'qualification': { required: true, message: 'This field is required.' },
+                'educationPlace': { required: true, message: 'This field is required.' },
+                'hasExperience': { required: true, message: 'Please select an option.' },
+                'skillMotorcycle': { required: true, message: 'Please select an option.' },
+                'skillCar': { required: true, message: 'Please select an option.' },
+                'skillLicense': { required: true, message: 'Please select an option.' },
+                'criminalCase': { required: true, message: 'Please select an option.' },
+                'residentialSupport': { required: true, message: 'Please select an option.' },
+                'availability': { required: true, message: 'Please select an option.' },
+                'howDidYouHear': { required: true, message: 'Please select an option.' },
+                'situationalAnswer1': { required: true, message: 'This field is required.' },
+                'situationalAnswer2': { required: true, message: 'This field is required.' },
+                'situationalAnswer3': { required: true, message: 'This field is required.' },
+                'situationalAnswer4': { required: true, message: 'This field is required.' },
+                'situationalAnswer5': { required: true, message: 'This field is required.' },
+                'referenceName': { required: true, textOnly: true, message: 'Please enter a valid name.' },
+                'referenceContact': { required: true, phone: true, message: 'Please enter a valid 10-digit phone number.' },
+                // Dynamic fields
+                'exp-company': { required: true, message: 'Company name is required.' },
+                'exp-role': { required: true, message: 'Role is required.' },
+                'exp-duration': { required: true, message: 'Duration is required.' },
+                'lang-name': { required: true, message: 'Language name is required.' }
+            };
+
+            // --- *** NEW: VALIDATION ENGINE *** ---
+            function validateField(inputEl) {
+                if (!inputEl) return true;
+                
+                const ruleKey = inputEl.dataset.ruleKey || inputEl.id;
+                const rules = validationRules[ruleKey];
+                if (!rules) return true; 
+
+                const errorEl = document.getElementById(inputEl.id + '-error');
+                const value = inputEl.value.trim();
+                let isValid = true;
+                let errorMessage = '';
+
+                if (rules.required && value === '') {
+                    isValid = false;
+                    errorMessage = rules.message;
+                } else if (rules.email && value.length > 0 && !/^\S+@\S+\.\S+$/.test(value)) {
+                    isValid = false;
+                    errorMessage = rules.message;
+                } else if (rules.phone && value.length > 0 && !/^\d{10}$/.test(value)) {
+                    isValid = false;
+                    errorMessage = rules.message;
+                } else if (rules.textOnly && value.length > 0 && !/^[a-zA-Z\s.-]+$/.test(value)) {
+                    isValid = false;
+                    errorMessage = rules.message;
+                }
+
+                if (!isValid) {
+                    inputEl.classList.add('is-invalid');
+                    if(errorEl) errorEl.textContent = errorMessage;
+                } else {
+                    inputEl.classList.remove('is-invalid');
+                    if(errorEl) errorEl.textContent = '';
+                }
+                return isValid;
+            }
+
+            function setupValidationListeners() {
+                Object.keys(validationRules).forEach(id => {
+                    const inputEl = document.getElementById(id);
+                    if (inputEl) {
+                        const eventType = inputEl.tagName === 'SELECT' ? 'change' : 'blur';
+                        inputEl.addEventListener(eventType, () => validateField(inputEl));
+                    }
+                });
+            }
+
+            function setupDynamicValidation(container) {
+                container.querySelectorAll('input, select, textarea').forEach(inputEl => {
+                    const eventType = inputEl.tagName === 'SELECT' ? 'change' : 'blur';
+                    inputEl.addEventListener(eventType, () => validateField(inputEl));
+                });
+            }
+
             // --- NAVIGATION ---
             function navigateTo(pageKey) {
                 Object.values(pages).forEach(page => page.classList.add('hidden'));
@@ -513,32 +539,32 @@
                 document.getElementById('app-container').scrollIntoView();
             }
 
+            window.jumpToSegment = (segId, questionStep) => {
+                startSegment(segId);
+                const questionIndex = segmentDefinitions[segId].questions.findIndex(q => q.dataset.step == questionStep);
+                if (questionIndex !== -1) {
+                    currentSegmentQuestions[0].classList.add('hidden');
+                    showSegmentQuestion(questionIndex, true);
+                }
+            }
+            
             // --- SEGMENT HUB LOGIC ---
             function updateSegmentHub() {
                 const segmentList = document.getElementById('segment-list');
-                segmentList.innerHTML = ''; // Clear list
-
+                segmentList.innerHTML = '';
                 let completedCount = 0;
                 
                 Object.keys(segmentDefinitions).forEach(segId => {
                     const segment = segmentDefinitions[segId];
                     const status = segmentStatus[segId];
-                    let statusText = '';
-                    let statusIcon = '🕑';
-                    let cardClass = 'segment-card-todo';
+                    let statusText = '', statusIcon = '', cardClass = '';
                     
                     if (status === 'complete') {
-                        statusText = 'Complete';
-                        statusIcon = '✅';
-                        cardClass = 'segment-card-complete';
-                        completedCount++;
+                        statusText = 'Complete'; statusIcon = '✅'; cardClass = 'segment-card-complete'; completedCount++;
                     } else if (status === 'in-progress') {
-                        statusText = 'In Progress';
-                        statusIcon = '✏️';
-                        cardClass = 'segment-card-inprogress';
+                        statusText = 'In Progress'; statusIcon = '✏️'; cardClass = 'segment-card-inprogress';
                     } else {
-                        statusText = 'Not Started';
-                        statusIcon = '📄';
+                        statusText = 'Not Started'; statusIcon = '📄'; cardClass = 'segment-card-todo';
                     }
 
                     const cardHTML = `
@@ -551,32 +577,19 @@
                                 </div>
                             </div>
                             <span class="text-xl">${statusIcon}</span>
-                        </div>
-                    `;
+                        </div>`;
                     segmentList.insertAdjacentHTML('beforeend', cardHTML);
-                    
-                    // Add click listener
-                    document.getElementById(`segment-btn-${segId}`).addEventListener('click', () => {
-                        startSegment(segId);
-                    });
+                    document.getElementById(`segment-btn-${segId}`).addEventListener('click', () => startSegment(segId));
                 });
 
-                // Update Overall Progress Bar
                 const totalSegments = Object.keys(segmentDefinitions).length;
                 progressBar.overall.style.width = `${(completedCount / totalSegments) * 100}%`;
                 progressBar.overallText.textContent = `${completedCount}/${totalSegments} Segments`;
 
-                // Update Submit Button
                 const submitBtn = document.getElementById('hub-submit-btn');
-                if (completedCount === totalSegments) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('btn-disabled');
-                    submitBtn.classList.add('btn-primary');
-                } else {
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('btn-disabled');
-                    submitBtn.classList.remove('btn-primary');
-                }
+                submitBtn.disabled = (completedCount !== totalSegments);
+                submitBtn.classList.toggle('btn-disabled', submitBtn.disabled);
+                submitBtn.classList.toggle('btn-primary', !submitBtn.disabled);
             }
             
             // --- QUESTION FLOW LOGIC ---
@@ -585,17 +598,13 @@
                 currentSegmentQuestions = segmentDefinitions[segId].questions;
                 currentSegmentQuestionIndex = 0;
 
-                // Update segment status
                 if (segmentStatus[segId] === 'todo') {
                     segmentStatus[segId] = 'in-progress';
                 }
 
                 document.getElementById('question-flow-title').textContent = segmentDefinitions[segId].title.substring(2);
-                
-                // Hide all questions, then show the first one
                 allFormSteps.forEach(step => step.classList.add('hidden'));
-                showSegmentQuestion(currentSegmentQuestionIndex, true);
-                
+                showSegmentQuestion(0, true);
                 navigateTo('questionFlow');
                 updateSegmentProgress();
                 saveProgress();
@@ -606,20 +615,18 @@
                 const stepToShow = currentSegmentQuestions[index];
 
                 if (!stepToShow) {
-                    // This should not happen, but as a safeguard:
+                    // This console.error was the one reported by the user.
                     console.error("Attempted to show a question that doesn't exist.");
                     navigateTo('segmentHub');
                     return;
                 }
                 
-                // Personalization
                 if (firstName) {
                     const greeting = document.getElementById('personal-greeting');
                     greeting.textContent = `Alright, ${firstName}...`;
                     greeting.classList.remove('hidden');
                 }
                 
-                // Dynamic logic for steps
                 if (currentSegmentId === 'questionnaire') {
                     const position = formData.position || 'default';
                     const questionSet = situationalQuestionSets[position] || situationalQuestionSets["default"];
@@ -632,7 +639,6 @@
                     document.getElementById(`situational-label-5`).textContent = formData.questionSet[4];
                 }
 
-                // Animation
                 formWrapper.style.minHeight = `${stepToShow.offsetHeight + 60}px`;
                 
                 if (isInstant) {
@@ -644,9 +650,8 @@
                     setTimeout(() => {
                         stepToHide.classList.add('hidden');
                         stepToHide.classList.remove('fade-out');
-                        
                         stepToShow.classList.remove('hidden');
-                        void stepToShow.offsetWidth; // Reflow
+                        void stepToShow.offsetWidth;
                         stepToShow.classList.add('fade-in');
                         formWrapper.style.minHeight = `${stepToShow.offsetHeight + 60}px`;
                     }, 300);
@@ -661,49 +666,65 @@
                 const current = currentSegmentQuestionIndex + 1;
                 progressBar.segment.style.width = `${(current / total) * 100}%`;
                 progressBar.segmentText.textContent = `Step ${current} of ${total}`;
-                
                 navButtons.prev.classList.toggle('hidden', currentSegmentQuestionIndex === 0);
                 navButtons.next.textContent = (currentSegmentQuestionIndex === total - 1) ? 'Segment Complete' : 'Next';
             }
             
+            // --- *** UPDATED: VALIDATION FUNCTION *** ---
             function validateCurrentSegmentStep() {
                 const currentStepElement = currentSegmentQuestions[currentSegmentQuestionIndex];
-                const inputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
-                let isValid = true;
+                const inputs = currentStepElement.querySelectorAll('input, select, textarea');
+                let isStepValid = true;
                 
                 inputs.forEach(input => {
-                    if (input.offsetWidth > 0 && !input.value.trim()) {
-                        input.classList.add('border-red-500', 'focus:ring-red-500');
-                        isValid = false;
-                    } else {
-                        input.classList.remove('border-red-500', 'focus:ring-red-500');
+                    if (input.offsetWidth > 0) {
+                        const isValid = validateField(input);
+                        if (!isValid) isStepValid = false;
                     }
                 });
-                
-                // Dynamic validation
-                if (currentStepElement.dataset.step === "13") { // Experience
-                    const expInputs = document.getElementById('experience-container').querySelectorAll('input[required]');
-                    expInputs.forEach(expInput => {
-                        if (!expInput.value.trim()) {
-                            expInput.classList.add('border-red-500', 'focus:ring-red-500');
-                            isValid = false;
-                        } else {
-                            expInput.classList.remove('border-red-500', 'focus:ring-red-500');
-                        }
-                    });
-                }
-                if (currentStepElement.dataset.step === "17") { // Language
-                    const langInputs = document.getElementById('language-list').querySelectorAll('input[required]');
-                    langInputs.forEach(langInput => {
-                        if (!langInput.value.trim()) {
-                            langInput.classList.add('border-red-500', 'focus:ring-red-500');
-                            isValid = false;
-                        } else {
-                            langInput.classList.remove('border-red-500', 'focus:ring-red-500');
-                        }
-                    });
-                }
-                return isValid;
+                return isStepValid;
+            }
+
+            // --- DYNAMIC FIELD FUNCTIONS (with validation listeners) ---
+            function addLanguageField(lang = { name: '', read: false, write: false, speak: false }) {
+                const list = document.getElementById('language-list');
+                const langIndex = list.children.length;
+                const langFieldHTML = `
+                    <div class="language-item bg-slate-900 p-3 rounded-lg border border-slate-700">
+                        <input type="text" id="lang-name-${langIndex}" data-rule-key="lang-name" class="form-input mb-2" placeholder="Language (e.g., Tamil)" value="${lang.name}" required>
+                        <div id="lang-name-${langIndex}-error" class="validation-message"></div>
+                        <div class="flex flex-wrap gap-4 text-sm mt-2">
+                            <label class="flex items-center"><input type="checkbox" data-lang-read="${langIndex}" ${lang.read ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Read</span></label>
+                            <label class="flex items-center"><input type="checkbox" data-lang-write="${langIndex}" ${lang.write ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Write</span></label>
+                            <label class="flex items-center"><input type="checkbox" data-lang-speak="${langIndex}" ${lang.speak ? 'checked' : ''} class="h-4 w-4 bg-slate-700 text-blue-500 focus:ring-blue-500 rounded"> <span class="ml-2">Speak</span></label>
+                        </div>
+                    </div>`;
+                list.insertAdjacentHTML('beforeend', langFieldHTML);
+                setupDynamicValidation(list.lastChild);
+                formWrapper.style.minHeight = `${currentSegmentQuestions[currentSegmentQuestionIndex].offsetHeight + list.offsetHeight + 100}px`;
+            }
+            
+            function addExperienceField(exp = { company: '', role: '', duration: '' }) {
+                const container = document.getElementById('experience-container');
+                const expIndex = container.children.length;
+                const expFieldHTML = `
+                    <div class="experience-item bg-slate-900 p-3 rounded-lg border border-slate-700 space-y-2">
+                        <div>
+                            <input type="text" id="exp-company-${expIndex}" data-rule-key="exp-company" class="form-input" placeholder="Company Name" value="${exp.company}" required>
+                            <div id="exp-company-${expIndex}-error" class="validation-message"></div>
+                        </div>
+                        <div>
+                            <input type="text" id="exp-role-${expIndex}" data-rule-key="exp-role" class="form-input" placeholder="Your Role" value="${exp.role}" required>
+                            <div id="exp-role-${expIndex}-error" class="validation-message"></div>
+                        </div>
+                        <div>
+                            <input type="text" id="exp-duration-${expIndex}" data-rule-key="exp-duration" class="form-input" placeholder="Duration (e.g., 2 Years)" value="${exp.duration}" required>
+                            <div id="exp-duration-${expIndex}-error" class="validation-message"></div>
+                        </div>
+                    </div>`;
+                container.insertAdjacentHTML('beforeend', expFieldHTML);
+                setupDynamicValidation(container.lastChild);
+                formWrapper.style.minHeight = `${currentSegmentQuestions[currentSegmentQuestionIndex].offsetHeight + container.offsetHeight + 100}px`;
             }
 
             // --- EVENT LISTENERS (Navigation) ---
@@ -724,21 +745,15 @@
             
             document.getElementById('name-continue-btn').addEventListener('click', () => {
                 const nameInput = document.getElementById('fullName');
-                const nameError = document.getElementById('fullName-error');
-                if (nameInput.value.trim()) {
-                    nameError.classList.add('hidden');
+                if (validateField(nameInput)) {
                     firstName = nameInput.value.trim().split(' ')[0];
                     formData.fullName = nameInput.value.trim();
-                    // Pre-fill the question form
                     document.getElementById('fullName-q').value = nameInput.value.trim();
-                    // Mark basic info as in-progress
                     segmentStatus.basicInfo = 'in-progress';
                     document.getElementById('hub-greeting').textContent = `Welcome, ${firstName}!`;
                     saveProgress();
                     updateSegmentHub();
                     navigateTo('segmentHub');
-                } else {
-                    nameError.classList.remove('hidden');
                 }
             });
 
@@ -758,29 +773,31 @@
                 navigateTo('segmentHub');
             });
 
+            // --- *** UPDATED: navButtons.next LOGIC *** ---
             navButtons.next.addEventListener('click', () => {
                 if (validateCurrentSegmentStep()) {
-                    // Save form data before moving
                     gatherFormData();
                     
-                    // Skip logic for Experience
-                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "12") { // "Has Experience"
-                        if (formData.hasExperience === 'No') {
-                            // Skip the "Add Experience" step
-                            showSegmentQuestion(currentSegmentQuestionIndex, false);
-                            currentSegmentQuestionIndex = currentSegmentQuestionIndex + 1; // Skips step 13
-                            showSegmentQuestion(currentSegmentQuestionIndex + 1, false); // This is a bit of a hack
-                            saveProgress();
-                            return;
-                        } else {
-                            if(document.getElementById('experience-container').children.length === 0) {
-                                addExperienceField();
-                            }
+                    // FIX: Check for the "hasExperience" skip
+                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "12" && formData.hasExperience === 'No') {
+                        // User selected "No", and this is the "hasExperience" question.
+                        // This means we skip step "13" and end the segment.
+                        segmentStatus[currentSegmentId] = 'complete';
+                        saveProgress();
+                        updateSegmentHub();
+                        navigateTo('segmentHub');
+                        return; // Exit the click handler
+                    }
+                    // END FIX
+                    
+                    // This logic only runs if the skip wasn't triggered
+                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "12" && formData.hasExperience === 'Yes') {
+                        // User selected "Yes", make sure the dynamic field is added if it's not there
+                        if(document.getElementById('experience-container').children.length === 0) {
+                            addExperienceField();
                         }
                     }
-                    
-                    // Skip logic for Language
-                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "17") { // "Add Language"
+                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "17") {
                         if(document.getElementById('language-list').children.length === 0) {
                             addLanguageField();
                         }
@@ -793,30 +810,25 @@
                         updateSegmentHub();
                         navigateTo('segmentHub');
                     } else {
-                        showSegmentQuestion(currentSegmentQuestionIndex, false); // Animate out
+                        // Normal "Next"
+                        showSegmentQuestion(currentSegmentQuestionIndex, false);
                         currentSegmentQuestionIndex++;
-                        showSegmentQuestion(currentSegmentQuestionIndex, false); // Animate in
+                        showSegmentQuestion(currentSegmentQuestionIndex, false);
                         saveProgress();
                     }
                 }
             });
             
+            // --- *** UPDATED: navButtons.prev LOGIC *** ---
             navButtons.prev.addEventListener('click', () => {
                 if (currentSegmentQuestionIndex > 0) {
-                    // Skip logic for Experience (reverse)
-                    if (currentSegmentQuestions[currentSegmentQuestionIndex].dataset.step === "14") { // "Ride Motorcycle"
-                        if (formData.hasExperience === 'No') {
-                            showSegmentQuestion(currentSegmentQuestionIndex, false);
-                            currentSegmentQuestionIndex = currentSegmentQuestionIndex - 1; // Skips step 13
-                            showSegmentQuestion(currentSegmentQuestionIndex - 1, false);
-                            saveProgress();
-                            return;
-                        }
-                    }
                     
-                    showSegmentQuestion(currentSegmentQuestionIndex, false); // Animate out
+                    // FIX: Remove faulty skip logic
+                    // The old logic was incorrect and unnecessary.
+                    
+                    showSegmentQuestion(currentSegmentQuestionIndex, false);
                     currentSegmentQuestionIndex--;
-                    showSegmentQuestion(currentSegmentQuestionIndex, false); // Animate in
+                    showSegmentQuestion(currentSegmentQuestionIndex, false);
                     saveProgress();
                 }
             });
@@ -831,45 +843,8 @@
                 e.target.href = url;
             });
 
-            // --- DYNAMIC FIELD LISTENERS ---
-            positionSelect.addEventListener('change', () => {
-                const qualification = positionQualifications[positionSelect.value];
-                if (qualification) {
-                    positionDetails.textContent = qualification;
-                    positionDetails.classList.remove('hidden');
-                } else {
-                    positionDetails.classList.add('hidden');
-                }
-                formWrapper.style.minHeight = `${currentSegmentQuestions[currentSegmentQuestionIndex].offsetHeight + 100}px`;
-            });
-            
-            document.getElementById('add-language-btn').addEventListener('click', () => {
-                addLanguageField();
-                formWrapper.style.minHeight = `${currentSegmentQuestions[currentSegmentQuestionIndex].offsetHeight + 100}px`;
-            });
-            document.getElementById('add-experience-btn').addEventListener('click', () => {
-                addExperienceField();
-                formWrapper.style.minHeight = `${currentSegmentQuestions[currentSegmentQuestionIndex].offsetHeight + 100}px`;
-            });
-            
-            // --- REVIEW PAGE JUMP-TO-SEGMENT LOGIC ---
-            window.jumpToSegment = (segId, questionStep) => {
-                startSegment(segId); // This will load the segment
-                
-                // Find the index of the questionStep within that segment
-                const questionIndex = segmentDefinitions[segId].questions.findIndex(q => q.dataset.step == questionStep);
-                
-                if (questionIndex !== -1) {
-                    // Hide the first question (shown by startSegment) and show the correct one
-                    currentSegmentQuestions[0].classList.add('hidden');
-                    showSegmentQuestion(questionIndex, true); // Show instantly
-                }
-            }
-            
-            // --- DATA GATHERING & REVIEW PAGE BUILD ---
+            // --- DATA GATHERING, REVIEW, MAILTO (Review Page Build updated) ---
             function gatherFormData() {
-                // This function now reads from ALL form fields, even hidden ones.
-                // This is fine, as it's just populating the formData object.
                 const getValue = (id) => document.getElementById(id)?.value?.trim() || '';
                 
                 formData.fullName = getValue('fullName-q') || getValue('fullName');
@@ -903,7 +878,7 @@
 
                 formData.languages = [];
                 document.querySelectorAll('.language-item').forEach((item, index) => {
-                    const name = item.querySelector(`[data-lang-name="${index}"]`)?.value?.trim();
+                    const name = item.querySelector(`[data-rule-key="lang-name"]`)?.value?.trim();
                     if (name) {
                         formData.languages.push({
                             name: name,
@@ -918,9 +893,9 @@
                 if (formData.hasExperience === 'Yes') {
                     document.querySelectorAll('.experience-item').forEach((item, index) => {
                         formData.experience.push({
-                            company: item.querySelector(`[data-exp-company="${index}"]`)?.value?.trim(),
-                            role: item.querySelector(`[data-exp-role="${index}"]`)?.value?.trim(),
-                            duration: item.querySelector(`[data-exp-duration="${index}"]`)?.value?.trim(),
+                            company: item.querySelector(`[data-rule-key="exp-company"]`)?.value?.trim(),
+                            role: item.querySelector(`[data-rule-key="exp-role"]`)?.value?.trim(),
+                            duration: item.querySelector(`[data-rule-key="exp-duration"]`)?.value?.trim(),
                         });
                     });
                 }
@@ -929,12 +904,19 @@
             function buildReviewPage() {
                 gatherFormData();
                 const reviewContent = document.getElementById('review-content');
-                const formatLangSkills = (lang) => { /* ... */ }; // (omitted for brevity, same as v6)
-                const langHtml = formData.languages.map(lang => `...`).join(''); // (omitted for brevity)
-                const expHtml = formData.experience.map(exp => `...`).join(''); // (omitted for brevity)
+                const formatLangSkills = (lang) => {
+                    const skills = [];
+                    if (lang.read) skills.push('Read');
+                    if (lang.write) skills.push('Write');
+                    if (lang.speak) skills.push('Speak');
+                    return skills.length ? skills.join(', ') : 'N/A';
+                };
+                const langHtml = formData.languages.map(lang => `
+                    <li class="ml-4"><strong>${lang.name}:</strong> ${formatLangSkills(lang)}</li>`).join('');
+                const expHtml = formData.experience.map(exp => `
+                    <li class="ml-4"><strong>${exp.role}</strong> at ${exp.company} (${exp.duration})</li>`).join('');
                 const optional = (val) => val ? val.replace(/\n/g, '<br>') : '<span class="text-slate-500">N/A</span>';
 
-                // --- NEW JUMP TO SEGMENT CALLS ---
                 reviewContent.innerHTML = `
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
                         <div class="flex justify-between items-center mb-3">
@@ -964,7 +946,13 @@
                             <h3 class="text-xl font-bold text-blue-400">Aptitude Questionnaire</h3>
                             <button onclick="jumpToSegment('questionnaire', 18)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
-                        <!-- ... Aptitude Answers ... -->
+                        <div class="space-y-2 text-sm">
+                            <p><strong>Q1:</strong> ${formData.questionSet[0]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer1)}</span></p>
+                            <p><strong>Q2:</strong> ${formData.questionSet[1]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer2)}</span></p>
+                            <p><strong>Q3:</strong> ${formData.questionSet[2]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer3)}</span></p>
+                            <p><strong>Q4:</strong> ${formData.questionSet[3]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer4)}</span></p>
+                            <p><strong>Q5:</strong> ${formData.questionSet[4]}<br><span class="pl-2 text-slate-300"><strong>A:</strong> ${optional(formData.situationalAnswer5)}</span></p>
+                        </div>
                     </div>
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
@@ -972,7 +960,11 @@
                             <h3 class="text-xl font-bold text-blue-400">Education & Experience</h3>
                             <button onclick="jumpToSegment('eduExperience', 9)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
-                        <!-- ... Edu/Exp Details ... -->
+                        <p><strong>Qualification:</strong> ${formData.qualification}</p>
+                        <p><strong>Discipline:</strong> ${optional(formData.discipline)}</p>
+                        <p><strong>Education Place:</strong> ${formData.educationPlace}</p>
+                        <p class="mt-2"><strong>Experience:</strong> ${formData.hasExperience}</p>
+                        <ul class="list-disc">${expHtml || ''}</ul>
                     </div>
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
@@ -980,7 +972,11 @@
                             <h3 class="text-xl font-bold text-blue-400">Skills & Languages</h3>
                             <button onclick="jumpToSegment('skillsLanguages', 14)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
-                        <!-- ... Skills/Lang Details ... -->
+                        <p><strong>Ride Motorcycle:</strong> ${formData.skillMotorcycle}</p>
+                        <p><strong>Drive Car:</strong> ${formData.skillCar}</p>
+                        <p><strong>License:</strong> ${formData.skillLicense}</p>
+                        <p><strong>Languages:</strong></p>
+                        <ul class="list-disc">${langHtml || '<span class="text-slate-500 ml-4">No languages listed.</span>'}</ul>
                     </div>
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
@@ -988,7 +984,11 @@
                             <h3 class="text-xl font-bold text-blue-400">Declarations & Reference</h3>
                             <button onclick="jumpToSegment('declarations', 23)" class="text-sm text-blue-400 hover:text-blue-300 font-medium py-1 px-2 rounded hover:bg-slate-700">Edit</button>
                         </div>
-                        <!-- ... Decls/Ref Details ... -->
+                        <p><strong>Availability:</strong> ${formData.availability}</p>
+                        <p><strong>Criminal Cases:</strong> ${formData.criminalCase}</p>
+                        <p><strong>Needs Residential Support:</strong> ${formData.residentialSupport}</p>
+                        <p><strong>Heard About Us Via:</strong> ${formData.howDidYouHear}</p>
+                        <p><strong>Reference:</strong> ${formData.referenceName} (${formData.referenceContact})</p>
                     </div>
                     
                     <div class="review-section bg-slate-900 p-4 rounded-lg border border-slate-700">
@@ -1007,15 +1007,27 @@
                 }
             }
 
-            // --- Mailto ---
             function generateMailto() {
                 gatherFormData(); 
-                // (Omitted for brevity, this function is identical to v6)
+                
                 const name = formData.fullName;
                 const email = formData.email;
                 const position = formData.position;
-                // ... all formData formatting ...
-                const body = `--- HIRING MANAGER QUICK VIEW ---
+                
+                const langText = formData.languages.map(lang => {
+                    const skills = [];
+                    if (lang.read) skills.push('Read');
+                    if (lang.write) skills.push('Write');
+                    if (lang.speak) skills.push('Speak');
+                    return `- ${lang.name} (${skills.join(', ')})`;
+                }).join('\n');
+                
+                const expText = formData.experience.map(exp => {
+                    return `- ${exp.role} at ${exp.company} (${exp.duration})`;
+                }).join('\n');
+
+                const body = `
+--- HIRING MANAGER QUICK VIEW ---
 Name: ${name}
 Position: ${position}
 Phone: ${formData.phone}
@@ -1025,19 +1037,86 @@ License: ${formData.skillLicense}
 Needs Residence: ${formData.residentialSupport}
 Heard Via: ${formData.howDidYouHear}
 ---------------------------------
-... (rest of the email body) ...
+
+--- ROLE FIT (KEY ANSWERS) ---
+
+Why Clenzzo:
+${formData.whyClenzzo}
+
+--- Aptitude Questionnaire (${position}) ---
+
+Q1: ${formData.questionSet[0]}
+A: ${formData.situationalAnswer1}
+
+Q2: ${formData.questionSet[1]}
+A: ${formData.situationalAnswer2}
+
+Q3: ${formData.questionSet[2]}
+A: ${formData.situationalAnswer3}
+
+Q4: ${formData.questionSet[3]}
+A: ${formData.situationalAnswer4}
+
+Q5: ${formData.questionSet[4]}
+A: ${formData.situationalAnswer5}
+---------------------------------
+
+Dear Clenzzo Hiring Team,
+
+I am writing to apply for the position of ${position}. Please find my full application details below.
+
+--- FULL APPLICATION DETAILS ---
+
+Personal Information:
+- Name: ${name}
+- Email: ${email}
+- Phone: ${formData.phone}
+- Marital Status: ${formData.maritalStatus}
+- Place of Birth: ${formData.placeOfBirth}
+- Address:
+${formData.currentAddress}
+
+Education & Experience:
+- Qualification: ${formData.qualification}
+- Discipline: ${formData.discipline || 'N/A'}
+- Place of Education: ${formData.educationPlace}
+- Experience: ${formData.hasExperience}
+${expText}
+
+Skills & Languages:
+- Ride Motorcycle: ${formData.skillMotorcycle}
+- Drive Car: ${formData.skillCar}
+- License: ${formData.skillLicense}
+- Languages:
+${langText || 'N/A'}
+
+Declarations & Reference:
+- Availability: ${formData.availability}
+- Criminal Cases: ${formData.criminalCase}
+- Needs Residential Support: ${formData.residentialSupport}
+- Heard About Us Via: ${formData.howDidYouHear}
+- Reference: ${formData.referenceName} (${formData.referenceContact})
+
+Additional Notes:
+${formData.anythingElse || 'N/A'}
+
+--- AGREEMENT ---
+I confirm that I have read and agreed to the terms of engagement, including the 3-month probation period, 1-year minimum commitment, and specified working hours.
+
+Thank you for your time and consideration.
+
 Sincerely,
 ${name}
 `;
+                
                 const to = 'admin@clenzzo.com'; 
                 const cc = email;
                 const subject = `Application: ${position} - ${name}`;
                 return `mailto:${to}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             }
             
-            // --- localStorage & State Management ---
-            const saveKey = 'clenzzoDraft_v7_segmented';
-            
+            // --- localStorage ---
+            const saveKey = 'clenzzoDraft_v8_validated';
             function saveProgress() {
                 gatherFormData();
                 const state = {
@@ -1058,69 +1137,63 @@ ${name}
                 
                 const { formData: savedData, segmentStatus: savedStatus, firstName: savedFirstName, agreed } = JSON.parse(savedState);
                 
-                if (!agreed) {
-                    navigateTo('welcome');
-                    return;
-                }
-
-                if (!savedData || !savedData.fullName) {
-                    // They agreed but didn't enter name
-                    navigateTo('nameCapture');
-                    return;
-                }
+                if (!agreed) { navigateTo('welcome'); return; }
+                if (!savedData || !savedData.fullName) { navigateTo('nameCapture'); return; }
                 
                 formData = savedData;
                 segmentStatus = savedStatus;
                 firstName = savedFirstName;
                 
-                // Repopulate all fields
                 Object.keys(savedData).forEach(key => {
                     const el = document.getElementById(key);
                     if (el) el.value = savedData[key];
+                    if (key === 'fullName') {
+                        document.getElementById('fullName-q').value = savedData[key];
+                        document.getElementById('fullName').value = savedData[key]; // Sync both
+                    }
                 });
-                // Repopulate the name-q field
-                document.getElementById('fullName-q').value = savedData.fullName;
                 
-                // Repopulate dynamic fields
                 if (savedData.languages) savedData.languages.forEach(addLanguageField);
                 if (savedData.hasExperience === 'Yes' && savedData.experience) {
                     savedData.experience.forEach(addExperienceField);
                 }
-                
                 document.getElementById('agree-checkbox').checked = agreed;
-                
-                // Set personalization
                 document.getElementById('hub-greeting').textContent = `Welcome, ${firstName}!`;
                 
-                // Re-trigger UI updates
                 updatePositionDetails();
                 triggerAllCounters();
-                validateEmail(true);
-                validatePhone(true);
                 
-                // Navigate to hub
                 updateSegmentHub();
                 navigateTo('segmentHub');
             }
+            function clearProgress() { localStorage.removeItem(saveKey); }
             
-            function clearProgress() {
-                localStorage.removeItem(saveKey);
-            }
-            
-            // --- Real-time Validation & Counters ---
-            function validateEmail(isLoad = false) { /* ... */ }
-            function validatePhone(isLoad = false) { /* ... */ }
+            // --- Counters & Details ---
             function setupCounter(textareaId, counterId, maxLength) {
                 const textarea = document.getElementById(textareaId);
                 const counter = document.getElementById(counterId);
-                const update = () => { if(textarea && counter) { counter.textContent = `${textarea.value.length} / ${maxLength}`; } };
+                
+                // *** FIX: Add null check for elements ***
+                if (!textarea || !counter) {
+                    // console.warn(`Counter setup failed: ${textareaId} or ${counterId} not found.`);
+                    return;
+                }
+
+                const update = () => {
+                    counter.textContent = `${textarea.value.length} / ${maxLength}`;
+                };
+                
                 textarea.addEventListener('keyup', update);
                 textarea.addEventListener('change', update);
                 update(); 
             }
             function triggerAllCounters() {
                 setupCounter('whyClenzzo', 'whyClenzzo-counter', 300);
-                // ... all 5 situational counters
+                setupCounter('situationalAnswer1', 'situationalAnswer1-counter', 250);
+                setupCounter('situationalAnswer2', 'situationalAnswer2-counter', 250);
+                setupCounter('situationalAnswer3', 'situationalAnswer3-counter', 250);
+                setupCounter('situationalAnswer4', 'situationalAnswer4-counter', 250);
+                setupCounter('situationalAnswer5', 'situationalAnswer5-counter', 250);
             }
             function updatePositionDetails() {
                 const qualification = positionQualifications[positionSelect.value];
@@ -1132,19 +1205,12 @@ ${name}
                 }
             }
 
-            // --- Add listeners for saving progress ---
-            document.getElementById('application-form').addEventListener('change', saveProgress);
-            document.getElementById('application-form').addEventListener('keyup', (e) => {
-                if (e.target.type === 'text' || e.target.type === 'email' || e.target.type === 'tel' || e.target.tagName === 'TEXTAREA') {
-                    saveProgress();
-                }
-            });
-
-            document.getElementById('email').addEventListener('keyup', () => validateEmail(false));
-            document.getElementById('phone').addEventListener('keyup', () => validatePhone(false));
-            
+            // --- INITIAL LOAD ---
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            setupValidationListeners(); // *** NEW ***
             triggerAllCounters();
             loadProgress();
+            
         });
     </script>
     
